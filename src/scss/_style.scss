@@ -1,40 +1,122 @@
+.opacitymax {
+  opacity: 1 !important;
+}
 main {
-  background-color: black;
-  background-image: url(../../assets/images/stars.png);
-  background-size: cover;
   section.homepage {
-    padding-top: 100px;
-    margin: 0 auto;
-    max-width: 1090px;
-    width: 100%;
+    background-color: black;
+    background-image: url(../../assets/images/stars.png);
+    background-size: cover;
     height: 100vh;
-    @include flex-fd-jc-ai(column, center, center);
-    h1 {
-      color: $redberryred;
-      font-size: 96px;
-      line-height: 119px;
-      font-family: $rowdiesreg;
-      text-transform: capitalize;
+    .first-wrapper {
+      padding-top: 100px;
+      margin: 0 auto;
+      max-width: 1090px;
+      width: 100%;
+      @include flex-fd-jc-ai(column, center, center);
+      h1 {
+        color: $redberryred;
+        font-size: 96px;
+        line-height: 119px;
+        font-family: $rowdiesreg;
+        text-transform: capitalize;
+      }
+      .start-btn {
+        background-color: $redberryred;
+        padding: 20px 65px;
+        border-radius: 50px;
+        color: $white;
+        text-transform: capitalize;
+        margin-top: 105px;
+        margin-bottom: 40px;
+        font-family: $montserratlight;
+        font-size: 24px;
+        font-style: normal;
+        line-height: 29px;
+      }
+      .submitted-app {
+        text-decoration: underline;
+        text-transform: capitalize;
+        font-size: 24px;
+        color: $white;
+        font-family: $montserratlight;
+      }
     }
-    .start-btn {
-      background-color: $redberryred;
-      padding: 20px 65px;
-      border-radius: 50px;
-      color: $white;
-      text-transform: capitalize;
-      margin-top: 105px;
-      margin-bottom: 40px;
-      font-family: $montserratlight;
-      font-size: 24px;
-      font-style: normal;
-      line-height: 29px;
+  }
+  section.personal-information {
+    @include flex-jc-ai(center, flex-start);
+    .personal-left {
+      background-color: $white;
+      width: 50%;
+      padding-top: 130px;
+      .personal-left-inner {
+        @include flex-fd-jc-ai(column, center, center);
+        h2 {
+          font-family: $rowdiesreg;
+          font-size: 64px;
+          line-height: 79px;
+          color: $redberryred;
+          margin-bottom: 130px;
+          max-width: 715px;
+          width: 100%;
+        }
+        input {
+          width: 455px;
+          height: 54px;
+          border: 1px solid $bordergray;
+          padding: 17px 0 13px 57px;
+          margin-bottom: 37px;
+          &::placeholder {
+            color: $placeholdergray;
+            font-family: $montserratlight;
+            font-style: italic;
+            font-size: 14px;
+            line-height: 17px;
+          }
+        }
+        .pagination {
+          margin-top: 138px;
+          @include flex-jc-ai(center, center);
+          span {
+            width: 19px;
+            height: 19px;
+            background-color: $redberryred;
+            opacity: 0.1;
+            margin-left: 15px;
+            border-radius: 50%;
+          }
+          .prev {
+            margin-right: 3px;
+          }
+          .next {
+            margin-left: 18px;
+          }
+        }
+      }
     }
-    .submitted-app {
-      text-decoration: underline;
-      text-transform: capitalize;
-      font-size: 24px;
-      color: $white;
-      font-family: $montserratlight;
+    .personal-right {
+      background-color: $darkbg;
+      height: 100vh;
+      padding: 130px 0 0 130px;
+      width: 50%;
+      .personal-right-inner {
+        max-width: 705px;
+        width: 100%;
+        @include flex-fd-jc-ai(column, center, flex-start);
+        h2 {
+          font-family: $rowdiesreg;
+          font-size: 64px;
+          line-height: 79px;
+          color: $redberryred;
+          margin-bottom: 150px;
+          text-transform: capitalize;
+        }
+        p {
+          font-family: $montserratlight;
+          font-size: 24px;
+          line-height: 48px;
+          color: $white;
+        }
+      }
     }
   }
 }
