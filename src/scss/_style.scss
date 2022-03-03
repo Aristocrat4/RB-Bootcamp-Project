@@ -4,6 +4,9 @@
 .hidden {
   display: none !important;
 }
+.top-hide {
+  transform: translateX(-100%);
+}
 main {
   section.homepage {
     background-color: black;
@@ -47,6 +50,34 @@ main {
   }
   .personal-information {
     background-color: $darkbg;
+    .submit-page {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: $darkbg;
+      @include flex-fd-jc-ai(column, center, center);
+      z-index: 9;
+      .submit {
+        text-transform: capitalize;
+        color: $white;
+        background-color: $redberryred;
+        border-radius: 50px;
+        font-family: $montserratlight;
+        font-size: 36px;
+        margin-bottom: 40px;
+        border: none;
+        padding: 16px 131px;
+      }
+      .goback {
+        color: $white;
+        text-decoration: underline;
+        font-size: 28px;
+        font-family: $montserratlight;
+      }
+    }
     .group {
       @include flex-jc-ai(center, flex-start);
       .personal-left {
