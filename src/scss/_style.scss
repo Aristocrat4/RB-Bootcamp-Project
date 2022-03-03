@@ -275,4 +275,16 @@ main {
       }
     }
   }
+  section.thanks {
+    background-color: $darkbg;
+    width: 100%;
+    height: 100vh;
+    @include flex-jc-ai(center, center);
+    h2 {
+      color: $redberryred;
+      font-family: $rowdiesbold;
+      font-size: 64px;
+      font-weight: bolder;
+    }
+  }
 }
