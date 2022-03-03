@@ -186,6 +186,10 @@ a {
   opacity: 1 !important;
 }
 
+.hidden {
+  display: none !important;
+}
+
 main section.homepage {
   background-color: black;
   background-image: url(../../assets/images/stars.png);
@@ -243,7 +247,11 @@ main section.homepage .first-wrapper .submitted-app {
   font-family: "Montserrat-Light";
 }
 
-main section.personal-information {
+main .personal-information {
+  background-color: #0c0d0e;
+}
+
+main .personal-information .group {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -255,13 +263,14 @@ main section.personal-information {
           align-items: flex-start;
 }
 
-main section.personal-information .personal-left {
+main .personal-information .group .personal-left {
   background-color: #ffffff;
   width: 50%;
   padding-top: 130px;
+  min-height: 100vh;
 }
 
-main section.personal-information .personal-left .personal-left-inner {
+main .personal-information .group .personal-left .personal-left-inner {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -277,25 +286,100 @@ main section.personal-information .personal-left .personal-left-inner {
           align-items: center;
 }
 
-main section.personal-information .personal-left .personal-left-inner h2 {
+main .personal-information .group .personal-left .personal-left-inner .grouped-left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .personal-information .group .personal-left .personal-left-inner .grouped-left h2 {
   font-family: "Rowdies-Regular";
   font-size: 64px;
   line-height: 79px;
   color: #fe3b1f;
   margin-bottom: 130px;
-  max-width: 715px;
+  max-width: 790px;
   width: 100%;
 }
 
-main section.personal-information .personal-left .personal-left-inner input {
+main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs .add-lang-btn {
+  font-family: "Montserrat-Light";
+  font-size: 12px;
+  text-transform: capitalize;
+  padding: 7px 9px;
+  color: #ffffff;
+  background-color: #fe3b1f;
+  border: none;
+  margin-bottom: 55px;
+  cursor: pointer;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+}
+
+main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs .added-skill {
+  border: 1px solid #525557;
+  padding: 12px 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 455px;
+  height: 54px;
+  font-family: "Montserrat-Light";
+  font-size: 14px;
+  font-style: italic;
+  color: #000;
+}
+
+main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs .added-skill .remove-skill {
+  cursor: pointer;
+}
+
+main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs input,
+main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   width: 455px;
   height: 54px;
   border: 1px solid #525557;
-  padding: 17px 0 13px 57px;
+  padding: 17px 10px 13px 57px;
   margin-bottom: 37px;
 }
 
-main section.personal-information .personal-left .personal-left-inner input::-webkit-input-placeholder {
+main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs input::-webkit-input-placeholder,
+main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs select::-webkit-input-placeholder {
   color: #454545;
   font-family: "Montserrat-Light";
   font-style: italic;
@@ -303,7 +387,8 @@ main section.personal-information .personal-left .personal-left-inner input::-we
   line-height: 17px;
 }
 
-main section.personal-information .personal-left .personal-left-inner input:-ms-input-placeholder {
+main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs input:-ms-input-placeholder,
+main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs select:-ms-input-placeholder {
   color: #454545;
   font-family: "Montserrat-Light";
   font-style: italic;
@@ -311,7 +396,8 @@ main section.personal-information .personal-left .personal-left-inner input:-ms-
   line-height: 17px;
 }
 
-main section.personal-information .personal-left .personal-left-inner input::-ms-input-placeholder {
+main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs input::-ms-input-placeholder,
+main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs select::-ms-input-placeholder {
   color: #454545;
   font-family: "Montserrat-Light";
   font-style: italic;
@@ -319,7 +405,8 @@ main section.personal-information .personal-left .personal-left-inner input::-ms
   line-height: 17px;
 }
 
-main section.personal-information .personal-left .personal-left-inner input::placeholder {
+main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs input::placeholder,
+main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs select::placeholder {
   color: #454545;
   font-family: "Montserrat-Light";
   font-style: italic;
@@ -327,7 +414,26 @@ main section.personal-information .personal-left .personal-left-inner input::pla
   line-height: 17px;
 }
 
-main section.personal-information .personal-left .personal-left-inner .pagination {
+main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs input option,
+main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs select option {
+  color: #454545;
+  font-family: "Montserrat-Light";
+  font-style: italic;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs input::-webkit-outer-spin-button,
+main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+          appearance: none;
+}
+
+main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs select {
+  cursor: pointer;
+}
+
+main .personal-information .group .personal-left .personal-left-inner .pagination {
   margin-top: 138px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -340,7 +446,8 @@ main section.personal-information .personal-left .personal-left-inner .paginatio
           align-items: center;
 }
 
-main section.personal-information .personal-left .personal-left-inner .pagination span {
+main .personal-information .group .personal-left .personal-left-inner .pagination span {
+  cursor: pointer;
   width: 19px;
   height: 19px;
   background-color: #fe3b1f;
@@ -349,23 +456,24 @@ main section.personal-information .personal-left .personal-left-inner .paginatio
   border-radius: 50%;
 }
 
-main section.personal-information .personal-left .personal-left-inner .pagination .prev {
+main .personal-information .group .personal-left .personal-left-inner .pagination .prev {
+  cursor: pointer;
   margin-right: 3px;
 }
 
-main section.personal-information .personal-left .personal-left-inner .pagination .next {
+main .personal-information .group .personal-left .personal-left-inner .pagination .next {
+  cursor: pointer;
   margin-left: 18px;
 }
 
-main section.personal-information .personal-right {
-  background-color: #0c0d0e;
+main .personal-information .group .personal-right {
   height: 100vh;
   padding: 130px 0 0 130px;
   width: 50%;
 }
 
-main section.personal-information .personal-right .personal-right-inner {
-  max-width: 705px;
+main .personal-information .group .personal-right .personal-right-inner {
+  max-width: 790px;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -382,7 +490,7 @@ main section.personal-information .personal-right .personal-right-inner {
           align-items: flex-start;
 }
 
-main section.personal-information .personal-right .personal-right-inner h2 {
+main .personal-information .group .personal-right .personal-right-inner h2 {
   font-family: "Rowdies-Regular";
   font-size: 64px;
   line-height: 79px;
@@ -391,7 +499,7 @@ main section.personal-information .personal-right .personal-right-inner h2 {
   text-transform: capitalize;
 }
 
-main section.personal-information .personal-right .personal-right-inner p {
+main .personal-information .group .personal-right .personal-right-inner p {
   font-family: "Montserrat-Light";
   font-size: 24px;
   line-height: 48px;

@@ -1,6 +1,9 @@
 .opacitymax {
   opacity: 1 !important;
 }
+.hidden {
+  display: none !important;
+}
 main {
   section.homepage {
     background-color: black;
@@ -42,79 +45,134 @@ main {
       }
     }
   }
-  section.personal-information {
-    @include flex-jc-ai(center, flex-start);
-    .personal-left {
-      background-color: $white;
-      width: 50%;
-      padding-top: 130px;
-      .personal-left-inner {
-        @include flex-fd-jc-ai(column, center, center);
-        h2 {
-          font-family: $rowdiesreg;
-          font-size: 64px;
-          line-height: 79px;
-          color: $redberryred;
-          margin-bottom: 130px;
-          max-width: 715px;
-          width: 100%;
-        }
-        input {
-          width: 455px;
-          height: 54px;
-          border: 1px solid $bordergray;
-          padding: 17px 0 13px 57px;
-          margin-bottom: 37px;
-          &::placeholder {
-            color: $placeholdergray;
-            font-family: $montserratlight;
-            font-style: italic;
-            font-size: 14px;
-            line-height: 17px;
+  .personal-information {
+    background-color: $darkbg;
+    .group {
+      @include flex-jc-ai(center, flex-start);
+      .personal-left {
+        background-color: $white;
+        width: 50%;
+        padding-top: 130px;
+        min-height: 100vh;
+        .personal-left-inner {
+          @include flex-fd-jc-ai(column, center, center);
+          .grouped-left {
+            @include flex-fd-jc-ai(column, center, center);
+            h2 {
+              font-family: $rowdiesreg;
+              font-size: 64px;
+              line-height: 79px;
+              color: $redberryred;
+              margin-bottom: 130px;
+              max-width: 790px;
+              width: 100%;
+            }
+            .collect-inputs {
+              @include flex-fd-jc-ai(column, center, center);
+
+              .add-lang-btn {
+                font-family: $montserratlight;
+                font-size: 12px;
+                text-transform: capitalize;
+                padding: 7px 9px;
+                color: $white;
+                background-color: $redberryred;
+                border: none;
+                margin-bottom: 55px;
+                cursor: pointer;
+                align-self: flex-end;
+              }
+              .added-skill {
+                border: 1px solid $bordergray;
+                padding: 12px 15px;
+                @include flex-jc-ai(space-between, center);
+                width: 455px;
+                height: 54px;
+                font-family: $montserratlight;
+                font-size: 14px;
+                font-style: italic;
+                color: #000;
+                .remove-skill {
+                  cursor: pointer;
+                }
+              }
+              input,
+              select {
+                appearance: none;
+                width: 455px;
+                height: 54px;
+                border: 1px solid $bordergray;
+                padding: 17px 10px 13px 57px;
+                margin-bottom: 37px;
+                &::placeholder {
+                  color: $placeholdergray;
+                  font-family: $montserratlight;
+                  font-style: italic;
+                  font-size: 14px;
+                  line-height: 17px;
+                }
+                option {
+                  color: $placeholdergray;
+                  font-family: $montserratlight;
+                  font-style: italic;
+                  font-size: 14px;
+                  line-height: 17px;
+                }
+              }
+              input::-webkit-outer-spin-button,
+              input::-webkit-inner-spin-button {
+                appearance: none;
+              }
+              select {
+                cursor: pointer;
+              }
+            }
           }
-        }
-        .pagination {
-          margin-top: 138px;
-          @include flex-jc-ai(center, center);
-          span {
-            width: 19px;
-            height: 19px;
-            background-color: $redberryred;
-            opacity: 0.1;
-            margin-left: 15px;
-            border-radius: 50%;
-          }
-          .prev {
-            margin-right: 3px;
-          }
-          .next {
-            margin-left: 18px;
+          .pagination {
+            margin-top: 138px;
+            @include flex-jc-ai(center, center);
+            span {
+              cursor: pointer;
+              width: 19px;
+              height: 19px;
+              background-color: $redberryred;
+              opacity: 0.1;
+              margin-left: 15px;
+              border-radius: 50%;
+            }
+            .prev {
+              cursor: pointer;
+              margin-right: 3px;
+            }
+            .next {
+              cursor: pointer;
+              margin-left: 18px;
+            }
           }
         }
       }
-    }
-    .personal-right {
-      background-color: $darkbg;
-      height: 100vh;
-      padding: 130px 0 0 130px;
-      width: 50%;
-      .personal-right-inner {
-        max-width: 705px;
-        width: 100%;
-        @include flex-fd-jc-ai(column, center, flex-start);
-        h2 {
-          font-family: $rowdiesreg;
-          font-size: 64px;
-          line-height: 79px;
-          color: $redberryred;
-          margin-bottom: 150px;
-          text-transform: capitalize;
-        }
-        p {
-          font-family: $montserratlight;
-          font-size: 24px;
-          line-height: 48px;
-          color: $white;
+      .personal-right {
+        height: 100vh;
+        padding: 130px 0 0 130px;
+        width: 50%;
+        .personal-right-inner {
+          max-width: 790px;
+          width: 100%;
+          @include flex-fd-jc-ai(column, center, flex-start);
+          h2 {
+            font-family: $rowdiesreg;
+            font-size: 64px;
+            line-height: 79px;
+            color: $redberryred;
+            margin-bottom: 150px;
+            text-transform: capitalize;
+          }
+          p {
+            font-family: $montserratlight;
+            font-size: 24px;
+            line-height: 48px;
+            color: $white;
+          }
         }
       }
     }

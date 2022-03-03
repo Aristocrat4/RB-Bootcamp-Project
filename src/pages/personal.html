@@ -9,58 +9,112 @@
   </head>
   <body>
     <main>
-      <section class="personal-information">
-        <div class="personal-left">
-          <div class="personal-left-inner">
-            <h2>Hey, Rocketeer, what are your coordinates?</h2>
-            <input
-              type="text"
-              name="firstname"
-              id="firstname"
-              placeholder="First Name"
-            />
-            <input
-              type="text"
-              name="lastname"
-              id="lastname"
-              placeholder="Last Name"
-            />
-            <input type="email" name="email" id="email" placeholder="E-Mail" />
-            <input
-              type="number"
-              name="phone"
-              id="phone"
-              placeholder="+995 5__ ______"
-            />
-            <div class="pagination">
-              <img
-                class="prev"
-                src="../../assets/images/Previous.png"
-                alt="previous"
-              />
-              <span class="page-1 opacitymax"></span>
-              <span class="page-2"></span>
-              <span class="page-3"></span>
-              <span class="page-4"></span>
-              <span class="page-5"></span>
-              <img class="next" src="../../assets/images/Next.png" alt="next" />
+      <form class="personal-information">
+        <div class="group">
+          <div class="personal-left">
+            <div class="personal-left-inner">
+              <div class="grouped-left hidden">
+                <h2>Hey, Rocketeer, what are your coordinates?</h2>
+                <div class="collect-inputs">
+                  <input
+                    type="text"
+                    name="firstname"
+                    id="firstname"
+                    placeholder="First Name"
+                  />
+                  <input
+                    type="text"
+                    name="lastname"
+                    id="lastname"
+                    placeholder="Last Name"
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="E-Mail"
+                  />
+                  <input
+                    type="number"
+                    name="phone"
+                    id="phone"
+                    placeholder="+995 5__ ______"
+                  />
+                </div>
+              </div>
+              <div class="grouped-left">
+                <h2>Tell us about your skills</h2>
+                <div class="collect-inputs">
+                  <select name="skills" id="skills" aria-placeholder="Skills">
+                    <option value="skills" disabled selected>Skills</option>
+                    <option value="1">1</option>
+                  </select>
+                  <input
+                    type="number"
+                    name="experience"
+                    id="experience"
+                    placeholder="Experience Duration in Years"
+                  />
+                  <button type="button" class="add-lang-btn">
+                    Add Programming Language
+                  </button>
+
+                  <div class="added-skill">
+                    <span class="lang">PHP</span>
+                    <span class="experience-years">Years of Experience: 3</span>
+                    <img
+                      class="remove-skill"
+                      src="../../assets/images/Remove.png"
+                      alt="remove"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="pagination">
+                <img
+                  class="prev"
+                  src="../../assets/images/Previous.png"
+                  alt="previous"
+                />
+                <span class="page-1 opacitymax"></span>
+                <span class="page-2"></span>
+                <span class="page-3"></span>
+                <span class="page-4"></span>
+                <span class="page-5"></span>
+                <img
+                  class="next"
+                  src="../../assets/images/Next.png"
+                  alt="next"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="personal-right">
+            <div class="personal-right-inner">
+              <h2>redberry origins</h2>
+              <p>
+                You watch “What? Where? When?” Yeah. Our founders used to play
+                it. That’s where they got a question about a famous American
+                author and screenwriter Ray Bradbury. Albeit, our CEO Gaga
+                Darsalia forgot the exact name and he answered Ray Redberry. And
+                at that moment, a name for a yet to be born company was inspired
+                - Redberry 😇
+              </p>
+            </div>
+            <div class="personal-right-inner hidden">
+              <h2>A bit about our battles</h2>
+              <p>
+                As we said, Redberry has been on the field for quite some time
+                now, and we have touched and embraced a variety of programming
+                languages, technologies, philosophies, and frameworks. We are
+                battle-tested in PHP Laravel Stack with Vue.js, refined in
+                React, and allies with Serverside technologies like Docker and
+                Kubernetes, and now we have set foot in the web3 industry.
+              </p>
             </div>
           </div>
         </div>
-        <div class="personal-right">
-          <div class="personal-right-inner">
-            <h2>redberry origins</h2>
-            <p>
-              You watch “What? Where? When?” Yeah. Our founders used to play it.
-              That’s where they got a question about a famous American author
-              and screenwriter Ray Bradbury. Albeit, our CEO Gaga Darsalia
-              forgot the exact name and he answered Ray Redberry. And at that
-              moment, a name for a yet to be born company was inspired -
-              Redberry 😇
-            </p>
-          </div>
-        </div>
-      </section>
+      </form>
     </main>
     <script src="../js/main.js"></script>
   </body>
