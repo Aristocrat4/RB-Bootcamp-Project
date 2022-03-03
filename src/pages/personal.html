@@ -42,7 +42,7 @@
                   />
                 </div>
               </div>
-              <div class="grouped-left">
+              <div class="grouped-left hidden">
                 <h2>Tell us about your skills</h2>
                 <div class="collect-inputs">
                   <select name="skills" id="skills" aria-placeholder="Skills">
@@ -70,6 +70,83 @@
                   </div>
                 </div>
               </div>
+              <div class="grouped-left">
+                <h2>Covid Stuff</h2>
+                <div class="collect-inputs">
+                  <div class="covid-inner">
+                    <p class="q-1">How would you prefer to work?</p>
+                    <div class="radio-label">
+                      <input
+                        type="radio"
+                        id="office"
+                        name="work"
+                        value="From Sairme Office"
+                      />
+                      <label for="office">From Sairme Office</label>
+                    </div>
+                    <div class="radio-label">
+                      <input
+                        type="radio"
+                        id="home"
+                        name="work"
+                        value="From Home"
+                      />
+                      <label for="home">From Home</label>
+                    </div>
+                    <div class="radio-label">
+                      <input
+                        type="radio"
+                        id="hybrid"
+                        name="work"
+                        value="hybrid"
+                      />
+                      <label for="office">Hybrid</label>
+                    </div>
+                    <p class="q-2">Did you contact covid 19? :(</p>
+                    <div class="radio-label">
+                      <input
+                        type="radio"
+                        id="yes"
+                        name="hadcovid"
+                        value="yes"
+                      />
+                      <label for="yes">Yes</label>
+                    </div>
+                    <div class="radio-label">
+                      <input type="radio" id="no" name="hadcovid" value="no" />
+                      <label for="no">No</label>
+                    </div>
+                    <p class="q-3">When?</p>
+                    <input
+                      type="date"
+                      name="coviddate"
+                      id="coviddate"
+                      placeholder="Date"
+                    />
+                    <p class="q-4">Have you been vaccinated?</p>
+                    <div class="radio-label">
+                      <input
+                        type="radio"
+                        id="vaccineyes"
+                        name="vaccinated"
+                        value="vaccineyes"
+                      />
+                      <label for="vaccineyes">Yes</label>
+                    </div>
+                    <div class="radio-label">
+                      <input
+                        type="radio"
+                        id="vaccineno"
+                        name="vaccinated"
+                        value="vaccineno"
+                      />
+                      <label for="vaccineno">No</label>
+                    </div>
+                    <p class="q-5">When did you get your last covid vaccine?</p>
+                    <input type="date" name="vaccinedate" id="vaccinedate" />
+                  </div>
+                </div>
+              </div>
               <div class="pagination">
                 <img
                   class="prev"
@@ -90,7 +167,7 @@
             </div>
           </div>
           <div class="personal-right">
-            <div class="personal-right-inner">
+            <div class="personal-right-inner hidden">
               <h2>redberry origins</h2>
               <p>
                 You watch “What? Where? When?” Yeah. Our founders used to play
@@ -110,6 +187,18 @@
                 battle-tested in PHP Laravel Stack with Vue.js, refined in
                 React, and allies with Serverside technologies like Docker and
                 Kubernetes, and now we have set foot in the web3 industry.
+              </p>
+            </div>
+            <div class="personal-right-inner">
+              <h2>Redberry Covid Policies</h2>
+              <p>
+                As this infamous pandemic took over the world, we adjusted our
+                working practices so that our employees can be as safe and
+                comfortable as possible. We have a hybrid work environment, so
+                you can either work from home or visit our lovely office on
+                Sairme Street. If it was up to us, we would love you to see us
+                in the office because we think face-to-face communications >
+                Zoom meetings. Both on the fun and productivity scales.
               </p>
             </div>
           </div>
