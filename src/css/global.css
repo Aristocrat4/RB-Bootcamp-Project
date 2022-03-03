@@ -329,8 +329,58 @@ main .personal-information .group .personal-left .personal-left-inner .grouped-l
           align-items: center;
 }
 
+main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs .about-inner {
+  width: 645px;
+}
+
+main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs .about-inner textarea {
+  width: 535px;
+  border: 1px solid #0c0d0e;
+  resize: none;
+  padding: 24px 0 0 23px;
+  font-family: "Montserrat-Regular";
+  font-size: 13px;
+}
+
+main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs .about-inner .radio-label {
+  margin-bottom: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-left: 10px;
+}
+
+main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs .about-inner .radio-label label {
+  font-family: "Montserrat-Regular";
+  font-size: 14px;
+  text-transform: capitalize;
+  margin-left: 10px;
+}
+
+main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs .about-inner p:not(.q-5) {
+  font-family: "Montserrat-Regular";
+  font-size: 18px;
+  color: #000;
+  margin-bottom: 30px;
+  margin-top: 50px;
+}
+
+main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs .about-inner .q-5 {
+  font-family: "Montserrat-Regular";
+  font-size: 18px;
+  color: #000;
+  margin-bottom: 30px;
+}
+
 main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs .covid-inner {
   width: 645px;
+}
+
+main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs .covid-inner input[type="date"]::-webkit-calendar-indicator {
+  opacity: 0;
 }
 
 main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs .covid-inner .radio-label {

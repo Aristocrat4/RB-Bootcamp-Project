@@ -70,8 +70,46 @@ main {
             }
             .collect-inputs {
               @include flex-fd-jc-ai(column, center, center);
+              .about-inner {
+                width: 645px;
+                textarea {
+                  width: 535px;
+                  border: 1px solid $darkbg;
+                  resize: none;
+                  padding: 24px 0 0 23px;
+                  font-family: $montserratreg;
+                  font-size: 13px;
+                }
+                .radio-label {
+                  margin-bottom: 20px;
+                  @include flex-ai(center);
+                  padding-left: 10px;
+                  label {
+                    font-family: $montserratreg;
+                    font-size: 14px;
+                    text-transform: capitalize;
+                    margin-left: 10px;
+                  }
+                }
+                p:not(.q-5) {
+                  font-family: $montserratreg;
+                  font-size: 18px;
+                  color: #000;
+                  margin-bottom: 30px;
+                  margin-top: 50px;
+                }
+                .q-5 {
+                  font-family: $montserratreg;
+                  font-size: 18px;
+                  color: #000;
+                  margin-bottom: 30px;
+                }
+              }
               .covid-inner {
                 width: 645px;
+                input[type="date"]::-webkit-calendar-indicator {
+                  opacity: 0;
+                }
                 .radio-label {
                   margin-bottom: 20px;
                   @include flex-ai(center);
