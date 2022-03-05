@@ -48,6 +48,7 @@
                     id="phone"
                     placeholder="+995 5__ ______"
                     class=""
+                    onkeypress="return /^-?[0-9+ ]*$/.test(this.value+event.key)"
                   />
                   <span class="error-span hidden">*First name is required</span>
                 </div>

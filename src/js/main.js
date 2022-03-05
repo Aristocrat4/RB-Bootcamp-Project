@@ -18,6 +18,7 @@ nextSlideBtn.addEventListener("click", () => {
     // return false;
     console.log("false");
   }
+  firstFiveNums = "";
 });
 
 // this function checks validations for each required input
@@ -130,21 +131,21 @@ function checkPhoneNumberInput() {
   }
 }
 // listening phone number input to remove error if it exists
-let phoneValue = "";
-let firstFiveDigits = "";
-let res;
+let collectNums = "";
+let firstFiveNums = "";
 inputPhoneNumber.addEventListener("input", (e) => {
-  if (e.data) {
-    phoneValue += e.data;
-    res = phoneValue.slice(1).replace(/\D/g, "");
+  firstFiveNums = firstFiveNums.replace(/\s/g, "");
+  if (inputPhoneNumber.value.replace(/\s/g, "").length == 5) {
+    firstFiveNums = inputPhoneNumber.value.replace(/\s/g, "");
   }
-  console.log(phoneValue[0] + res);
-  if (res.length >= 5) {
-    firstFiveDigits = res.slice(0, 4);
-  }
-  console.log(firstFiveDigits);
-  if (phoneValue[0] + firstFiveDigits == "+9955" && res.length == 12) {
+
+  console.log(firstFiveNums);
+  if (
+    firstFiveNums == "+9955" &&
+    inputPhoneNumber.value.replace(/\s/g, "").length == 13
+  ) {
     clearError(inputPhoneNumber);
+    return true;
   }
 });
 // this function sets error message up on input
@@ -160,3 +161,30 @@ function clearError(input) {
     input.classList.remove("error-border");
   }
 }
+
+// test function
+// function setInputFilter(textbox, inputFilter) {
+//   [
+//     "input",
+//     "keydown",
+//     "keyup",
+//     "mousedown",
+//     "mouseup",
+//     "select",
+//     "contextmenu",
+//     "drop",
+//   ].forEach(function (event) {
+//     textbox.addEventListener(event, function () {
+//       if (inputFilter(this.value)) {
+//         this.oldValue = this.value;
+//         this.oldSelectionStart = this.selectionStart;
+//         this.oldSelectionEnd = this.selectionEnd;
+//       } else if (this.hasOwnProperty("oldValue")) {
+//         this.value = this.oldValue;
+//         this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+//       } else {
+//         this.value = "";
+//       }
+//     });
+//   });
+// }
