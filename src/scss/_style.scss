@@ -7,6 +7,17 @@
 .top-hide {
   transform: translateX(-100%);
 }
+.error-border {
+  border: 1px solid $redberryred !important;
+}
+.error-span {
+  color: $redberryred;
+  font-style: italic;
+  font-family: $montserratreg;
+  font-size: 12px;
+  width: 455px;
+  padding-left: 57px;
+}
 main {
   section.homepage {
     background-color: black;
@@ -94,7 +105,7 @@ main {
               font-size: 64px;
               line-height: 79px;
               color: $redberryred;
-              margin-bottom: 130px;
+              margin-bottom: 100px;
               max-width: 790px;
               width: 100%;
               text-align: center;
@@ -200,7 +211,8 @@ main {
                 height: 54px;
                 border: 1px solid $bordergray;
                 padding: 17px 10px 13px 57px;
-                margin-bottom: 37px;
+                margin-bottom: 7px;
+                margin-top: 37px;
                 &::placeholder {
                   color: $placeholdergray;
                   font-family: $montserratlight;

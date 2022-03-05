@@ -195,6 +195,19 @@ a {
           transform: translateX(-100%);
 }
 
+.error-border {
+  border: 1px solid #fe3b1f !important;
+}
+
+.error-span {
+  color: #fe3b1f;
+  font-style: italic;
+  font-family: "Montserrat-Regular";
+  font-size: 12px;
+  width: 455px;
+  padding-left: 57px;
+}
+
 main section.homepage {
   background-color: black;
   background-image: url(../../assets/images/stars.png);
@@ -355,7 +368,7 @@ main .personal-information .group .personal-left .personal-left-inner .grouped-l
   font-size: 64px;
   line-height: 79px;
   color: #fe3b1f;
-  margin-bottom: 130px;
+  margin-bottom: 100px;
   max-width: 790px;
   width: 100%;
   text-align: center;
@@ -511,7 +524,8 @@ main .personal-information .group .personal-left .personal-left-inner .grouped-l
   height: 54px;
   border: 1px solid #525557;
   padding: 17px 10px 13px 57px;
-  margin-bottom: 37px;
+  margin-bottom: 7px;
+  margin-top: 37px;
 }
 
 main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs input:not([type="radio"])::-webkit-input-placeholder,
