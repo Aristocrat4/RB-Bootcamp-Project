@@ -17,7 +17,8 @@ const addedSkillRow = document.querySelector(".added-skill");
 
 // this event checks all validations and changes slider
 nextSlideBtn.addEventListener("click", () => {
-  if (checkFirstSliderInputs()) {
+  checkSecondSlider();
+  if (checkFirstSliderInputs() && checkSecondSlider()) {
     // return true;
     console.log("true");
   } else {
@@ -154,6 +155,31 @@ inputPhoneNumber.addEventListener("input", (e) => {
     return true;
   }
 });
+// check second sliders validations
+function checkSecondSlider() {
+  checkIfSkillIsAdded();
+  if (checkIfSkillIsAdded()) {
+    console.log("true");
+    return true;
+  } else {
+    console.log("false");
+    return false;
+  }
+}
+// this function checks if at least one skill is added
+function checkIfSkillIsAdded() {
+  if (boxForAddedSkills.firstChild) {
+    console.log("true");
+    return true;
+  } else {
+    inputExperienceYears.nextSibling.nextSibling.classList.remove("hidden");
+    inputExperienceYears.classList.add("error-border");
+    inputExperienceYears.nextSibling.nextSibling.textContent =
+      "*At least one skill must be added";
+    console.log("false");
+    return false;
+  }
+}
 // this function sets error message up on input
 function setError(input, message) {
   input.nextSibling.nextSibling.textContent = `${message}`;
@@ -182,36 +208,33 @@ fetch("https://bootcamp-2022.devtest.ge/api/skills")
 
 // add skill after clicking on button
 btnAddSkill.addEventListener("click", (e) => {
-  debugger;
   const addedSkillRow = `
-                <div class="added-skill">
-                    <span class="lang">${skills.value}</span>
-                    <span class="experience-years">Years of Experience: ${inputExperienceYears.value}</span>
-                    <img
-                      class="remove-skill"
-                      src="../../assets/images/Remove.png"
-                      alt="remove"
-                    />
-                  </div>
-      `;
-  boxForAddedSkills.insertAdjacentHTML("afterbegin", addedSkillRow);
+                      <div class="added-skill">
+                          <span class="lang">${skills.value}</span>
+                          <span class="experience-years">Years of Experience: ${inputExperienceYears.value}</span>
+                          <img
+                            class="remove-skill"
+                            src="../../assets/images/Remove.png"
+                            alt="remove" onclick="undoOptions(this)" 
+                          />
+                        </div>
+            `;
+  if (inputExperienceYears.value && skills.value) {
+    boxForAddedSkills.insertAdjacentHTML("afterbegin", addedSkillRow);
+    const selectedOption = document.getElementById(`${skills.value}`);
+    selectedOption.remove();
+  }
+  if (inputExperienceYears.classList.contains("error-border")) {
+    inputExperienceYears.classList.remove("error-border");
+    inputExperienceYears.nextSibling.nextSibling.classList.add("hidden");
+  }
+});
 
-  const btnRemoveSkillRow = document.querySelectorAll(".remove-skill");
-  const selectedOption = document.getElementById(`${skills.value}`);
-  selectedOption.remove();
-  console.log(btnRemoveSkillRow);
-  btnRemoveSkillRow.forEach((el) => {
-    debugger;
-
-    el.addEventListener("click", () => {
-      debugger;
-
-      console.log(el);
-      el.parentElement.remove();
-      const undoOption = `
+// function for remove added skill and back it to options list
+function undoOptions(el) {
+  el.parentElement.remove();
+  const undoOption = `
                 <option id="${el.parentElement.firstElementChild.innerHTML}" value="${el.parentElement.firstElementChild.innerHTML}">${el.parentElement.firstElementChild.innerHTML}</option>
                 `;
-      skills.insertAdjacentHTML("afterbegin", undoOption);
-    });
-  });
-});
+  skills.insertAdjacentHTML("afterbegin", undoOption);
+}
