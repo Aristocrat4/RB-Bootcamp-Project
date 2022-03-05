@@ -509,6 +509,7 @@ main .personal-information .group .personal-left .personal-left-inner .grouped-l
   font-size: 14px;
   font-style: italic;
   color: #000;
+  margin-bottom: 7px;
 }
 
 main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs .added-skill .remove-skill {
@@ -571,6 +572,7 @@ main .personal-information .group .personal-left .personal-left-inner .grouped-l
   font-style: italic;
   font-size: 14px;
   line-height: 17px;
+  width: 455px;
 }
 
 main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs input::-webkit-outer-spin-button,

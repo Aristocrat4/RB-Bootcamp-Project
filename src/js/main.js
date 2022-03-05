@@ -7,6 +7,12 @@ const inputFirstName = document.getElementById("firstname");
 const inputLastName = document.getElementById("lastname");
 const inputEmail = document.getElementById("email");
 const inputPhoneNumber = document.getElementById("phone");
+// select variables from second stage
+const selectSkill = document.getElementById("skills");
+const inputExperienceYears = document.getElementById("experience");
+const btnAddSkill = document.querySelector(".add-lang-btn");
+const boxForAddedSkills = document.querySelector(".added-skills-group");
+const addedSkillRow = document.querySelector(".added-skill");
 // end of select variables
 
 // this event checks all validations and changes slider
@@ -162,29 +168,50 @@ function clearError(input) {
   }
 }
 
-// test function
-// function setInputFilter(textbox, inputFilter) {
-//   [
-//     "input",
-//     "keydown",
-//     "keyup",
-//     "mousedown",
-//     "mouseup",
-//     "select",
-//     "contextmenu",
-//     "drop",
-//   ].forEach(function (event) {
-//     textbox.addEventListener(event, function () {
-//       if (inputFilter(this.value)) {
-//         this.oldValue = this.value;
-//         this.oldSelectionStart = this.selectionStart;
-//         this.oldSelectionEnd = this.selectionEnd;
-//       } else if (this.hasOwnProperty("oldValue")) {
-//         this.value = this.oldValue;
-//         this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
-//       } else {
-//         this.value = "";
-//       }
-//     });
-//   });
-// }
+// fetch skills and add options inside select input
+fetch("https://bootcamp-2022.devtest.ge/api/skills")
+  .then((response) => response.json())
+  .then((data) => {
+    data.forEach((element) => {
+      const skillOption = `
+          <option id="${element.title}" value="${element.title}">${element.title}</option>
+          `;
+      skills.insertAdjacentHTML("afterbegin", skillOption);
+    });
+  });
+
+// add skill after clicking on button
+btnAddSkill.addEventListener("click", (e) => {
+  debugger;
+  const addedSkillRow = `
+                <div class="added-skill">
+                    <span class="lang">${skills.value}</span>
+                    <span class="experience-years">Years of Experience: ${inputExperienceYears.value}</span>
+                    <img
+                      class="remove-skill"
+                      src="../../assets/images/Remove.png"
+                      alt="remove"
+                    />
+                  </div>
+      `;
+  boxForAddedSkills.insertAdjacentHTML("afterbegin", addedSkillRow);
+
+  const btnRemoveSkillRow = document.querySelectorAll(".remove-skill");
+  const selectedOption = document.getElementById(`${skills.value}`);
+  selectedOption.remove();
+  console.log(btnRemoveSkillRow);
+  btnRemoveSkillRow.forEach((el) => {
+    debugger;
+
+    el.addEventListener("click", () => {
+      debugger;
+
+      console.log(el);
+      el.parentElement.remove();
+      const undoOption = `
+                <option id="${el.parentElement.firstElementChild.innerHTML}" value="${el.parentElement.firstElementChild.innerHTML}">${el.parentElement.firstElementChild.innerHTML}</option>
+                `;
+      skills.insertAdjacentHTML("afterbegin", undoOption);
+    });
+  });
+});

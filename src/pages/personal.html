@@ -13,7 +13,7 @@
         <div class="group">
           <div class="personal-left">
             <div class="personal-left-inner">
-              <div class="grouped-left">
+              <div class="grouped-left hidden">
                 <h2>Hey, Rocketeer, what are your coordinates?</h2>
                 <div class="collect-inputs">
                   <input
@@ -53,13 +53,14 @@
                   <span class="error-span hidden">*First name is required</span>
                 </div>
               </div>
-              <div class="grouped-left hidden">
+              <div class="grouped-left">
                 <h2>Tell us about your skills</h2>
                 <div class="collect-inputs">
-                  <select name="skills" id="skills" aria-placeholder="Skills">
-                    <option value="skills" disabled selected>Skills</option>
-                    <option value="1">1</option>
-                  </select>
+                  <select
+                    name="skills"
+                    id="skills"
+                    aria-placeholder="Skills"
+                  ></select>
                   <input
                     type="number"
                     name="experience"
@@ -69,16 +70,7 @@
                   <button type="button" class="add-lang-btn">
                     Add Programming Language
                   </button>
-
-                  <div class="added-skill">
-                    <span class="lang">PHP</span>
-                    <span class="experience-years">Years of Experience: 3</span>
-                    <img
-                      class="remove-skill"
-                      src="../../assets/images/Remove.png"
-                      alt="remove"
-                    />
-                  </div>
+                  <div class="added-skills-group"></div>
                 </div>
               </div>
               <div class="grouped-left hidden">
@@ -224,7 +216,7 @@
             </div>
           </div>
           <div class="personal-right">
-            <div class="personal-right-inner">
+            <div class="personal-right-inner hidden">
               <h2>redberry origins</h2>
               <p>
                 You watch “What? Where? When?” Yeah. Our founders used to play
@@ -235,7 +227,7 @@
                 - Redberry 😇
               </p>
             </div>
-            <div class="personal-right-inner hidden">
+            <div class="personal-right-inner">
               <h2>A bit about our battles</h2>
               <p>
                 As we said, Redberry has been on the field for quite some time

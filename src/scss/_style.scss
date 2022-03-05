@@ -199,6 +199,7 @@ main {
                 font-size: 14px;
                 font-style: italic;
                 color: #000;
+                margin-bottom: 7px;
                 .remove-skill {
                   cursor: pointer;
                 }
@@ -226,6 +227,7 @@ main {
                   font-style: italic;
                   font-size: 14px;
                   line-height: 17px;
+                  width: 455px;
                 }
               }
               input::-webkit-outer-spin-button,
