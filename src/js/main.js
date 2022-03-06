@@ -28,6 +28,11 @@ const questionHadCovid = document.querySelector(".q-2");
 const questionWhenCovid = document.querySelector(".q-3");
 const questionVaccinated = document.querySelector(".q-4");
 const questionWhenVaccinated = document.querySelector(".q-5");
+// select variables from fourth(insights) stage
+const radioDevtalksYes = document.getElementById("devtalksyes");
+const radioDevtalksNo = document.getElementById("devtalksno");
+const textareaSpecial = document.getElementById("devtalk-special");
+const textareaAbout = document.getElementById("devtalk-about");
 
 // end of select variables
 
@@ -35,7 +40,12 @@ const questionWhenVaccinated = document.querySelector(".q-5");
 nextSlideBtn.addEventListener("click", () => {
   checkSecondSlider();
   checkThirdCovidStageInputs();
-  if (checkFirstSliderInputs() && checkSecondSlider()) {
+  checkFourthInsightInputs();
+  if (
+    checkFirstSliderInputs() &&
+    checkSecondSlider() &&
+    checkFourthInsightInputs()
+  ) {
     // console.log("true");
     return true;
   } else {
@@ -260,7 +270,13 @@ function checkThirdCovidStageInputs() {
   checkDateInput();
   checkIfVaccinated();
   checkVaccineDateInput();
-  if (checkWork() && checkIfHadCovid()) {
+  if (
+    checkWork() &&
+    checkIfHadCovid() &&
+    checkDateInput() &&
+    checkIfVaccinated() &&
+    checkVaccineDateInput()
+  ) {
     return true;
   } else {
     return false;
@@ -424,6 +440,76 @@ VaccineDate.addEventListener("input", () => {
   if (VaccineDate.value !== "") {
     VaccineDate.classList.remove("error-border");
     VaccineDate.nextElementSibling.classList.add("hidden");
+    return true;
+  }
+});
+// check all validations on fourth(insights) stage
+function checkFourthInsightInputs() {
+  checkDevtalksRadio();
+  checkTextareas(textareaAbout);
+  checkTextareas(textareaSpecial);
+  if (
+    checkDevtalksRadio() &&
+    checkTextareas(textareaAbout) &&
+    checkTextareas(textareaSpecial)
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+// check Devtalks radio input
+function checkDevtalksRadio() {
+  if (radioDevtalksYes.checked || radioDevtalksNo.checked) {
+    if (
+      !radioDevtalksYes.parentElement.nextSibling.nextSibling.classList.contains(
+        "hidden"
+      )
+    ) {
+      radioDevtalksNo.parentElement.nextSibling.nextSibling.classList.add(
+        "hidden"
+      );
+      radioDevtalksYes.parentElement.nextSibling.nextSibling.classList.add(
+        "hidden"
+      );
+      return true;
+    }
+  } else {
+    radioDevtalksNo.parentElement.nextElementSibling.classList.remove("hidden");
+    radioDevtalksYes.parentElement.nextElementSibling.classList.remove(
+      "hidden"
+    );
+    radioDevtalksYes.parentElement.nextElementSibling.textContent =
+      "*Please answer the question";
+    radioDevtalksNo.parentElement.nextElementSibling.textContent =
+      "*Please answer the question";
+    return false;
+  }
+}
+// clear validation errors when each input is checked
+removeErrorFromRadioInputs(radioDevtalksYes, radioDevtalksNo);
+removeErrorFromRadioInputs(radioDevtalksNo, radioDevtalksYes);
+// check textarea validations
+function checkTextareas(el) {
+  if (el.value == "") {
+    el.nextElementSibling.classList.remove("hidden");
+    el.nextElementSibling.textContent = "*Fill this form please";
+    el.classList.add("error-border");
+    return false;
+  }
+}
+// listen textareas and clear if its filled
+textareaAbout.addEventListener("input", () => {
+  if (textareaAbout.value !== "") {
+    textareaAbout.nextElementSibling.classList.add("hidden");
+    textareaAbout.classList.remove("error-border");
+    return true;
+  }
+});
+textareaSpecial.addEventListener("input", () => {
+  if (textareaSpecial.value !== "") {
+    textareaSpecial.nextElementSibling.classList.add("hidden");
+    textareaSpecial.classList.remove("error-border");
     return true;
   }
 });
