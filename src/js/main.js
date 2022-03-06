@@ -1,7 +1,12 @@
 // select variables
+// pagination
 const prevSlideBtn = document.querySelector(".prev");
 const nextSlideBtn = document.querySelector(".next");
 const pageCircles = document.querySelectorAll(".page");
+const groupLefts = document.querySelectorAll(".grouped-left");
+const groupRights = document.querySelectorAll(".personal-right-inner");
+const submitPage = document.querySelector(".submit-page");
+const backFromSubmit = document.querySelector(".goback");
 // select variables from first stage
 const inputFirstName = document.getElementById("firstname");
 const inputLastName = document.getElementById("lastname");
@@ -38,25 +43,22 @@ const thanksSection = document.querySelector(".thanks");
 // end of select variables
 
 // this event checks all validations and changes slider
-if (nextSlideBtn) {
-  nextSlideBtn.addEventListener("click", () => {
-    checkSecondSlider();
-    checkThirdCovidStageInputs();
-    checkFourthInsightInputs();
-    if (
-      checkFirstSliderInputs() &&
-      checkSecondSlider() &&
-      checkFourthInsightInputs()
-    ) {
-      // console.log("true");
-      return true;
-    } else {
-      // console.log("false");
-      return false;
-    }
-    firstFiveNums = "";
-  });
-}
+// if (nextSlideBtn) {
+//   nextSlideBtn.addEventListener("click", () => {
+//     if (
+//       checkFirstSliderInputs() &&
+//       checkSecondSlider() &&
+//       checkFourthInsightInputs()
+//     ) {
+//       // console.log("true");
+//       return true;
+//     } else {
+//       // console.log("false");
+//       return false;
+//     }
+//     firstFiveNums = "";
+//   });
+// }
 
 // this function checks validations for each required input
 function checkFirstSliderInputs() {
@@ -553,4 +555,62 @@ if (thanksSection) {
   setTimeout(function () {
     window.location.href = "/index.html";
   }, 5000);
+}
+// make pagination alive
+let pageCounter = 1;
+if (pageCircles) {
+  nextSlideBtn.addEventListener("click", () => {
+    if (pageCounter == 1 && checkFirstSliderInputs()) {
+      pageCounter++;
+      groupLefts.forEach((el, i) => {
+        if (!el.classList.contains("hidden")) {
+          el.classList.add("hidden");
+        }
+      });
+      groupLefts[pageCounter - 1].classList.remove("hidden");
+    } else {
+      checkFirstSliderInputs();
+    }
+    if (pageCounter == 2 && checkSecondSlider()) {
+      pageCounter++;
+      groupLefts.forEach((el, i) => {
+        if (!el.classList.contains("hidden")) {
+          el.classList.add("hidden");
+        }
+      });
+      groupLefts[pageCounter - 1].classList.remove("hidden");
+    } else {
+      checkSecondSlider();
+    }
+    if (pageCounter == 3 && checkThirdCovidStageInputs()) {
+      pageCounter++;
+      groupLefts.forEach((el, i) => {
+        if (!el.classList.contains("hidden")) {
+          el.classList.add("hidden");
+        }
+      });
+      groupLefts[pageCounter - 1].classList.remove("hidden");
+    } else {
+      checkThirdCovidStageInputs();
+    }
+    if (pageCounter == 4 && checkFourthInsightInputs()) {
+      pageCounter++;
+      groupLefts.forEach((el, i) => {
+        if (!el.classList.contains("hidden")) {
+          el.classList.add("hidden");
+        }
+      });
+      submitPage.classList.remove("top-hide");
+    } else {
+      checkFourthInsightInputs();
+    }
+  });
+  prevSlideBtn.addEventListener("click", () => {
+    pageCounter--;
+  });
+  pageCircles.forEach((el, i) => {
+    el.addEventListener("click", () => {
+      pageCounter + i + 1;
+    });
+  });
 }
