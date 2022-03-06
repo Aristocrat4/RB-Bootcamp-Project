@@ -33,27 +33,30 @@ const radioDevtalksYes = document.getElementById("devtalksyes");
 const radioDevtalksNo = document.getElementById("devtalksno");
 const textareaSpecial = document.getElementById("devtalk-special");
 const textareaAbout = document.getElementById("devtalk-about");
-
+// thanks
+const thanksSection = document.querySelector(".thanks");
 // end of select variables
 
 // this event checks all validations and changes slider
-nextSlideBtn.addEventListener("click", () => {
-  checkSecondSlider();
-  checkThirdCovidStageInputs();
-  checkFourthInsightInputs();
-  if (
-    checkFirstSliderInputs() &&
-    checkSecondSlider() &&
-    checkFourthInsightInputs()
-  ) {
-    // console.log("true");
-    return true;
-  } else {
-    // console.log("false");
-    return false;
-  }
-  firstFiveNums = "";
-});
+if (nextSlideBtn) {
+  nextSlideBtn.addEventListener("click", () => {
+    checkSecondSlider();
+    checkThirdCovidStageInputs();
+    checkFourthInsightInputs();
+    if (
+      checkFirstSliderInputs() &&
+      checkSecondSlider() &&
+      checkFourthInsightInputs()
+    ) {
+      // console.log("true");
+      return true;
+    } else {
+      // console.log("false");
+      return false;
+    }
+    firstFiveNums = "";
+  });
+}
 
 // this function checks validations for each required input
 function checkFirstSliderInputs() {
@@ -86,12 +89,14 @@ function checkFirstNameInput() {
   }
 }
 // this event is listening to first name input and removing error if its ok
-inputFirstName.addEventListener("input", () => {
-  if (inputFirstName.value.length >= 2) {
-    clearError(inputFirstName);
-    return true;
-  }
-});
+if (inputFirstName) {
+  inputFirstName.addEventListener("input", () => {
+    if (inputFirstName.value.length >= 2) {
+      clearError(inputFirstName);
+      return true;
+    }
+  });
+}
 // this function checks validation of last name input
 function checkLastNameInput() {
   if (inputLastName.value.length >= 2) {
@@ -103,12 +108,14 @@ function checkLastNameInput() {
   }
 }
 // this event is listening to last name input and removing error if its ok
-inputLastName.addEventListener("input", () => {
-  if (inputLastName.value.length >= 2) {
-    clearError(inputLastName);
-    return true;
-  }
-});
+if (inputLastName) {
+  inputLastName.addEventListener("input", () => {
+    if (inputLastName.value.length >= 2) {
+      clearError(inputLastName);
+      return true;
+    }
+  });
+}
 // check if email is valid
 const validateEmail = (email) => {
   return String(email)
@@ -134,12 +141,14 @@ function checkEmailInput() {
   }
 }
 // listen email input and remove error if email is valid
-inputEmail.addEventListener("input", () => {
-  if (validateEmail(inputEmail.value.trim())) {
-    clearError(inputEmail);
-    return true;
-  }
-});
+if (inputEmail) {
+  inputEmail.addEventListener("input", () => {
+    if (validateEmail(inputEmail.value.trim())) {
+      clearError(inputEmail);
+      return true;
+    }
+  });
+}
 // this function check if phone number validation is ok
 function checkPhoneNumberInput() {
   if (inputPhoneNumber.value == "") {
@@ -169,21 +178,23 @@ function checkPhoneNumberInput() {
 // listening phone number input to remove error if it exists
 let collectNums = "";
 let firstFiveNums = "";
-inputPhoneNumber.addEventListener("input", (e) => {
-  firstFiveNums = firstFiveNums.replace(/\s/g, "");
-  if (inputPhoneNumber.value.replace(/\s/g, "").length == 5) {
-    firstFiveNums = inputPhoneNumber.value.replace(/\s/g, "");
-  }
+if (inputPhoneNumber) {
+  inputPhoneNumber.addEventListener("input", (e) => {
+    firstFiveNums = firstFiveNums.replace(/\s/g, "");
+    if (inputPhoneNumber.value.replace(/\s/g, "").length == 5) {
+      firstFiveNums = inputPhoneNumber.value.replace(/\s/g, "");
+    }
 
-  console.log(firstFiveNums);
-  if (
-    firstFiveNums == "+9955" &&
-    inputPhoneNumber.value.replace(/\s/g, "").length == 13
-  ) {
-    clearError(inputPhoneNumber);
-    return true;
-  }
-});
+    console.log(firstFiveNums);
+    if (
+      firstFiveNums == "+9955" &&
+      inputPhoneNumber.value.replace(/\s/g, "").length == 13
+    ) {
+      clearError(inputPhoneNumber);
+      return true;
+    }
+  });
+}
 // check second sliders validations
 function checkSecondSlider() {
   checkIfSkillIsAdded();
@@ -220,40 +231,44 @@ function clearError(input) {
 }
 
 // fetch skills and add options inside select input
-fetch("https://bootcamp-2022.devtest.ge/api/skills")
-  .then((response) => response.json())
-  .then((data) => {
-    data.forEach((element) => {
-      const skillOption = `
-          <option id="${element.title}" value="${element.title}">${element.title}</option>
-          `;
-      skills.insertAdjacentHTML("afterbegin", skillOption);
+if (selectSkill) {
+  fetch("https://bootcamp-2022.devtest.ge/api/skills")
+    .then((response) => response.json())
+    .then((data) => {
+      data.forEach((element) => {
+        const skillOption = `
+              <option id="${element.title}" value="${element.title}">${element.title}</option>
+              `;
+        selectSkill.insertAdjacentHTML("afterbegin", skillOption);
+      });
     });
-  });
+}
 
 // add skill after clicking on button
-btnAddSkill.addEventListener("click", (e) => {
-  const addedSkillRow = `
-                      <div class="added-skill">
-                          <span class="lang">${skills.value}</span>
-                          <span class="experience-years">Years of Experience: ${inputExperienceYears.value}</span>
-                          <img
-                            class="remove-skill"
-                            src="../../assets/images/Remove.png"
-                            alt="remove" onclick="undoOptions(this)" 
-                          />
-                        </div>
-            `;
-  if (inputExperienceYears.value && skills.value) {
-    boxForAddedSkills.insertAdjacentHTML("afterbegin", addedSkillRow);
-    const selectedOption = document.getElementById(`${skills.value}`);
-    selectedOption.remove();
-  }
-  if (inputExperienceYears.classList.contains("error-border")) {
-    inputExperienceYears.classList.remove("error-border");
-    inputExperienceYears.nextSibling.nextSibling.classList.add("hidden");
-  }
-});
+if (btnAddSkill) {
+  btnAddSkill.addEventListener("click", (e) => {
+    const addedSkillRow = `
+                          <div class="added-skill">
+                              <span class="lang">${skills.value}</span>
+                              <span class="experience-years">Years of Experience: ${inputExperienceYears.value}</span>
+                              <img
+                                class="remove-skill"
+                                src="../../assets/images/Remove.png"
+                                alt="remove" onclick="undoOptions(this)" 
+                              />
+                            </div>
+                `;
+    if (inputExperienceYears.value && skills.value) {
+      boxForAddedSkills.insertAdjacentHTML("afterbegin", addedSkillRow);
+      const selectedOption = document.getElementById(`${skills.value}`);
+      selectedOption.remove();
+    }
+    if (inputExperienceYears.classList.contains("error-border")) {
+      inputExperienceYears.classList.remove("error-border");
+      inputExperienceYears.nextSibling.nextSibling.classList.add("hidden");
+    }
+  });
+}
 
 // function for remove added skill and back it to options list
 function undoOptions(el) {
@@ -312,16 +327,20 @@ function checkWork() {
 }
 //this listeners remove error messages when radio inputs are checked
 function removeErrorFromRadioInputs(first, second, third) {
-  first.addEventListener("change", () => {
-    if (!first.parentElement.nextElementSibling.classList.contains("hidden")) {
-      first.parentElement.nextElementSibling.classList.add("hidden");
-      second.parentElement.nextElementSibling.classList.add("hidden");
-      if (third) {
-        third.parentElement.nextElementSibling.classList.add("hidden");
+  if (first) {
+    first.addEventListener("change", () => {
+      if (
+        !first.parentElement.nextElementSibling.classList.contains("hidden")
+      ) {
+        first.parentElement.nextElementSibling.classList.add("hidden");
+        second.parentElement.nextElementSibling.classList.add("hidden");
+        if (third) {
+          third.parentElement.nextElementSibling.classList.add("hidden");
+        }
+        return true;
       }
-      return true;
-    }
-  });
+    });
+  }
 }
 removeErrorFromRadioInputs(radioOffice, radioHome, radioHybrid);
 removeErrorFromRadioInputs(radioHome, radioOffice, radioHybrid);
@@ -331,30 +350,38 @@ removeErrorFromRadioInputs(radioCovidNo, radioCovidYes);
 removeErrorFromRadioInputs(radioVaccineYes, radioVaccineNo);
 removeErrorFromRadioInputs(radioVaccineNo, radioVaccineYes);
 // this listener unhide date inputs if there is checked Yes answers
-radioCovidYes.addEventListener("change", () => {
-  if (radioCovidYes.checked) {
-    questionWhenCovid.classList.remove("hidden");
-    CovidDate.classList.remove("hidden");
-  }
-});
-radioCovidNo.addEventListener("change", () => {
-  if (!questionWhenCovid.classList.contains("hidden")) {
-    questionWhenCovid.classList.add("hidden");
-    CovidDate.classList.add("hidden");
-  }
-});
-radioVaccineYes.addEventListener("change", () => {
-  if (radioVaccineYes.checked) {
-    questionWhenVaccinated.classList.remove("hidden");
-    VaccineDate.classList.remove("hidden");
-  }
-});
-radioVaccineNo.addEventListener("change", () => {
-  if (!questionWhenVaccinated.classList.contains("hidden")) {
-    questionWhenVaccinated.classList.add("hidden");
-    VaccineDate.classList.add("hidden");
-  }
-});
+if (radioCovidYes) {
+  radioCovidYes.addEventListener("change", () => {
+    if (radioCovidYes.checked) {
+      questionWhenCovid.classList.remove("hidden");
+      CovidDate.classList.remove("hidden");
+    }
+  });
+}
+if (radioCovidNo) {
+  radioCovidNo.addEventListener("change", () => {
+    if (!questionWhenCovid.classList.contains("hidden")) {
+      questionWhenCovid.classList.add("hidden");
+      CovidDate.classList.add("hidden");
+    }
+  });
+}
+if (radioVaccineYes) {
+  radioVaccineYes.addEventListener("change", () => {
+    if (radioVaccineYes.checked) {
+      questionWhenVaccinated.classList.remove("hidden");
+      VaccineDate.classList.remove("hidden");
+    }
+  });
+}
+if (radioVaccineNo) {
+  radioVaccineNo.addEventListener("change", () => {
+    if (!questionWhenVaccinated.classList.contains("hidden")) {
+      questionWhenVaccinated.classList.add("hidden");
+      VaccineDate.classList.add("hidden");
+    }
+  });
+}
 // check if applicant had a covid
 function checkIfHadCovid() {
   if (radioCovidYes.checked || radioCovidNo.checked) {
@@ -392,13 +419,15 @@ function checkDateInput() {
     return false;
   }
 }
-CovidDate.addEventListener("input", () => {
-  if (CovidDate.value !== "") {
-    CovidDate.classList.remove("error-border");
-    CovidDate.nextElementSibling.classList.add("hidden");
-    return true;
-  }
-});
+if (CovidDate) {
+  CovidDate.addEventListener("input", () => {
+    if (CovidDate.value !== "") {
+      CovidDate.classList.remove("error-border");
+      CovidDate.nextElementSibling.classList.add("hidden");
+      return true;
+    }
+  });
+}
 // check if applicant is vaccinated
 function checkIfVaccinated() {
   if (radioVaccineYes.checked || radioVaccineNo.checked) {
@@ -436,13 +465,15 @@ function checkVaccineDateInput() {
     return false;
   }
 }
-VaccineDate.addEventListener("input", () => {
-  if (VaccineDate.value !== "") {
-    VaccineDate.classList.remove("error-border");
-    VaccineDate.nextElementSibling.classList.add("hidden");
-    return true;
-  }
-});
+if (VaccineDate) {
+  VaccineDate.addEventListener("input", () => {
+    if (VaccineDate.value !== "") {
+      VaccineDate.classList.remove("error-border");
+      VaccineDate.nextElementSibling.classList.add("hidden");
+      return true;
+    }
+  });
+}
 // check all validations on fourth(insights) stage
 function checkFourthInsightInputs() {
   checkDevtalksRadio();
@@ -499,17 +530,27 @@ function checkTextareas(el) {
   }
 }
 // listen textareas and clear if its filled
-textareaAbout.addEventListener("input", () => {
-  if (textareaAbout.value !== "") {
-    textareaAbout.nextElementSibling.classList.add("hidden");
-    textareaAbout.classList.remove("error-border");
-    return true;
-  }
-});
-textareaSpecial.addEventListener("input", () => {
-  if (textareaSpecial.value !== "") {
-    textareaSpecial.nextElementSibling.classList.add("hidden");
-    textareaSpecial.classList.remove("error-border");
-    return true;
-  }
-});
+if (textareaAbout) {
+  textareaAbout.addEventListener("input", () => {
+    if (textareaAbout.value !== "") {
+      textareaAbout.nextElementSibling.classList.add("hidden");
+      textareaAbout.classList.remove("error-border");
+      return true;
+    }
+  });
+}
+if (textareaSpecial) {
+  textareaSpecial.addEventListener("input", () => {
+    if (textareaSpecial.value !== "") {
+      textareaSpecial.nextElementSibling.classList.add("hidden");
+      textareaSpecial.classList.remove("error-border");
+      return true;
+    }
+  });
+}
+// redirect success page
+if (thanksSection) {
+  setTimeout(function () {
+    window.location.href = "/index.html";
+  }, 5000);
+}
