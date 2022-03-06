@@ -7,23 +7,40 @@ const inputFirstName = document.getElementById("firstname");
 const inputLastName = document.getElementById("lastname");
 const inputEmail = document.getElementById("email");
 const inputPhoneNumber = document.getElementById("phone");
-// select variables from second stage
+// select variables from second(skills) stage
 const selectSkill = document.getElementById("skills");
 const inputExperienceYears = document.getElementById("experience");
 const btnAddSkill = document.querySelector(".add-lang-btn");
 const boxForAddedSkills = document.querySelector(".added-skills-group");
 const addedSkillRow = document.querySelector(".added-skill");
+// select variables from third(covid) stage
+const radioOffice = document.getElementById("office");
+const radioHome = document.getElementById("home");
+const radioHybrid = document.getElementById("hybrid");
+const radioCovidYes = document.getElementById("covidyes");
+const radioCovidNo = document.getElementById("covidno");
+const CovidDate = document.getElementById("coviddate");
+const radioVaccineYes = document.getElementById("vaccineyes");
+const radioVaccineNo = document.getElementById("vaccineno");
+const VaccineDate = document.getElementById("vaccinedate");
+const questionWork = document.querySelector(".q-1");
+const questionHadCovid = document.querySelector(".q-2");
+const questionWhenCovid = document.querySelector(".q-3");
+const questionVaccinated = document.querySelector(".q-4");
+const questionWhenVaccinated = document.querySelector(".q-5");
+
 // end of select variables
 
 // this event checks all validations and changes slider
 nextSlideBtn.addEventListener("click", () => {
   checkSecondSlider();
+  checkThirdCovidStageInputs();
   if (checkFirstSliderInputs() && checkSecondSlider()) {
-    // return true;
-    console.log("true");
+    // console.log("true");
+    return true;
   } else {
-    // return false;
-    console.log("false");
+    // console.log("false");
+    return false;
   }
   firstFiveNums = "";
 });
@@ -40,8 +57,10 @@ function checkFirstSliderInputs() {
     checkEmailInput() &&
     checkPhoneNumberInput()
   ) {
+    console.log(true);
     return true;
   } else {
+    console.log(false);
     return false;
   }
 }
@@ -159,24 +178,20 @@ inputPhoneNumber.addEventListener("input", (e) => {
 function checkSecondSlider() {
   checkIfSkillIsAdded();
   if (checkIfSkillIsAdded()) {
-    console.log("true");
     return true;
   } else {
-    console.log("false");
     return false;
   }
 }
 // this function checks if at least one skill is added
 function checkIfSkillIsAdded() {
   if (boxForAddedSkills.firstChild) {
-    console.log("true");
     return true;
   } else {
     inputExperienceYears.nextSibling.nextSibling.classList.remove("hidden");
     inputExperienceYears.classList.add("error-border");
     inputExperienceYears.nextSibling.nextSibling.textContent =
       "*At least one skill must be added";
-    console.log("false");
     return false;
   }
 }
@@ -238,3 +253,177 @@ function undoOptions(el) {
                 `;
   skills.insertAdjacentHTML("afterbegin", undoOption);
 }
+// check third(covid) stage
+function checkThirdCovidStageInputs() {
+  checkWork();
+  checkIfHadCovid();
+  checkDateInput();
+  checkIfVaccinated();
+  checkVaccineDateInput();
+  if (checkWork() && checkIfHadCovid()) {
+    return true;
+  } else {
+    return false;
+  }
+}
+//check how would people prefer to work question
+function checkWork() {
+  if (radioOffice.checked || radioHome.checked || radioHybrid.checked) {
+    if (
+      !radioOffice.parentElement.nextSibling.nextSibling.classList.contains(
+        "hidden"
+      )
+    ) {
+      radioOffice.parentElement.nextSibling.nextSibling.classList.add("hidden");
+      radioHome.parentElement.nextSibling.nextSibling.classList.add("hidden");
+      radioHybrid.parentElement.nextSibling.nextSibling.classList.add("hidden");
+    }
+    return true;
+  } else {
+    radioOffice.parentElement.nextElementSibling.classList.remove("hidden");
+    radioHome.parentElement.nextElementSibling.classList.remove("hidden");
+    radioHybrid.parentElement.nextElementSibling.classList.remove("hidden");
+    radioOffice.parentElement.nextElementSibling.textContent =
+      "*Please answer the question";
+    radioHome.parentElement.nextElementSibling.textContent =
+      "*Please answer the question";
+    radioHybrid.parentElement.nextElementSibling.textContent =
+      "*Please answer the question";
+
+    console.log("false");
+    return false;
+  }
+}
+//this listeners remove error messages when radio inputs are checked
+function removeErrorFromRadioInputs(first, second, third) {
+  first.addEventListener("change", () => {
+    if (!first.parentElement.nextElementSibling.classList.contains("hidden")) {
+      first.parentElement.nextElementSibling.classList.add("hidden");
+      second.parentElement.nextElementSibling.classList.add("hidden");
+      if (third) {
+        third.parentElement.nextElementSibling.classList.add("hidden");
+      }
+      return true;
+    }
+  });
+}
+removeErrorFromRadioInputs(radioOffice, radioHome, radioHybrid);
+removeErrorFromRadioInputs(radioHome, radioOffice, radioHybrid);
+removeErrorFromRadioInputs(radioHybrid, radioHome, radioOffice);
+removeErrorFromRadioInputs(radioCovidYes, radioCovidNo);
+removeErrorFromRadioInputs(radioCovidNo, radioCovidYes);
+removeErrorFromRadioInputs(radioVaccineYes, radioVaccineNo);
+removeErrorFromRadioInputs(radioVaccineNo, radioVaccineYes);
+// this listener unhide date inputs if there is checked Yes answers
+radioCovidYes.addEventListener("change", () => {
+  if (radioCovidYes.checked) {
+    questionWhenCovid.classList.remove("hidden");
+    CovidDate.classList.remove("hidden");
+  }
+});
+radioCovidNo.addEventListener("change", () => {
+  if (!questionWhenCovid.classList.contains("hidden")) {
+    questionWhenCovid.classList.add("hidden");
+    CovidDate.classList.add("hidden");
+  }
+});
+radioVaccineYes.addEventListener("change", () => {
+  if (radioVaccineYes.checked) {
+    questionWhenVaccinated.classList.remove("hidden");
+    VaccineDate.classList.remove("hidden");
+  }
+});
+radioVaccineNo.addEventListener("change", () => {
+  if (!questionWhenVaccinated.classList.contains("hidden")) {
+    questionWhenVaccinated.classList.add("hidden");
+    VaccineDate.classList.add("hidden");
+  }
+});
+// check if applicant had a covid
+function checkIfHadCovid() {
+  if (radioCovidYes.checked || radioCovidNo.checked) {
+    if (
+      !radioCovidYes.parentElement.nextSibling.nextSibling.classList.contains(
+        "hidden"
+      )
+    ) {
+      radioCovidNo.parentElement.nextSibling.nextSibling.classList.add(
+        "hidden"
+      );
+      radioCovidYes.parentElement.nextSibling.nextSibling.classList.add(
+        "hidden"
+      );
+      return true;
+    }
+  } else {
+    radioCovidNo.parentElement.nextElementSibling.classList.remove("hidden");
+    radioCovidYes.parentElement.nextElementSibling.classList.remove("hidden");
+    radioCovidYes.parentElement.nextElementSibling.textContent =
+      "*Please answer the question";
+    radioCovidNo.parentElement.nextElementSibling.textContent =
+      "*Please answer the question";
+    return false;
+  }
+}
+function checkDateInput() {
+  if (
+    !questionWhenCovid.classList.contains("hidden") &&
+    CovidDate.value == ""
+  ) {
+    CovidDate.classList.add("error-border");
+    CovidDate.nextElementSibling.classList.remove("hidden");
+    CovidDate.nextElementSibling.textContent = "*Select date, please";
+    return false;
+  }
+}
+CovidDate.addEventListener("input", () => {
+  if (CovidDate.value !== "") {
+    CovidDate.classList.remove("error-border");
+    CovidDate.nextElementSibling.classList.add("hidden");
+    return true;
+  }
+});
+// check if applicant is vaccinated
+function checkIfVaccinated() {
+  if (radioVaccineYes.checked || radioVaccineNo.checked) {
+    if (
+      !radioVaccineYes.parentElement.nextSibling.nextSibling.classList.contains(
+        "hidden"
+      )
+    ) {
+      radioVaccineNo.parentElement.nextSibling.nextSibling.classList.add(
+        "hidden"
+      );
+      radioVaccineYes.parentElement.nextSibling.nextSibling.classList.add(
+        "hidden"
+      );
+      return true;
+    }
+  } else {
+    radioVaccineNo.parentElement.nextElementSibling.classList.remove("hidden");
+    radioVaccineYes.parentElement.nextElementSibling.classList.remove("hidden");
+    radioVaccineYes.parentElement.nextElementSibling.textContent =
+      "*Please answer the question";
+    radioVaccineNo.parentElement.nextElementSibling.textContent =
+      "*Please answer the question";
+    return false;
+  }
+}
+function checkVaccineDateInput() {
+  if (
+    !questionWhenVaccinated.classList.contains("hidden") &&
+    VaccineDate.value == ""
+  ) {
+    VaccineDate.classList.add("error-border");
+    VaccineDate.nextElementSibling.classList.remove("hidden");
+    VaccineDate.nextElementSibling.textContent = "*Select date, please";
+    return false;
+  }
+}
+VaccineDate.addEventListener("input", () => {
+  if (VaccineDate.value !== "") {
+    VaccineDate.classList.remove("error-border");
+    VaccineDate.nextElementSibling.classList.add("hidden");
+    return true;
+  }
+});

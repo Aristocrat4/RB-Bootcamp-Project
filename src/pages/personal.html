@@ -53,7 +53,7 @@
                   <span class="error-span hidden">*First name is required</span>
                 </div>
               </div>
-              <div class="grouped-left">
+              <div class="grouped-left hidden">
                 <h2>Tell us about your skills</h2>
                 <div class="collect-inputs">
                   <select
@@ -74,7 +74,7 @@
                   <div class="added-skills-group"></div>
                 </div>
               </div>
-              <div class="grouped-left hidden">
+              <div class="grouped-left">
                 <h2>Covid Stuff</h2>
                 <div class="collect-inputs">
                   <div class="covid-inner">
@@ -88,6 +88,7 @@
                       />
                       <label for="office">From Sairme Office</label>
                     </div>
+                    <div class="error-span hidden"></div>
                     <div class="radio-label">
                       <input
                         type="radio"
@@ -97,6 +98,7 @@
                       />
                       <label for="home">From Home</label>
                     </div>
+                    <div class="error-span hidden"></div>
                     <div class="radio-label">
                       <input
                         type="radio"
@@ -106,27 +108,37 @@
                       />
                       <label for="office">Hybrid</label>
                     </div>
+                    <div class="error-span hidden"></div>
                     <p class="q-2">Did you contact covid 19? :(</p>
                     <div class="radio-label">
                       <input
                         type="radio"
-                        id="yes"
+                        id="covidyes"
                         name="hadcovid"
                         value="yes"
                       />
                       <label for="yes">Yes</label>
                     </div>
+                    <div class="error-span hidden"></div>
                     <div class="radio-label">
-                      <input type="radio" id="no" name="hadcovid" value="no" />
+                      <input
+                        type="radio"
+                        id="covidno"
+                        name="hadcovid"
+                        value="no"
+                      />
                       <label for="no">No</label>
                     </div>
-                    <p class="q-3">When?</p>
+                    <div class="error-span hidden"></div>
+                    <p class="q-3 hidden">When?</p>
                     <input
+                      class="hidden"
                       type="date"
                       name="coviddate"
                       id="coviddate"
                       placeholder="Date"
                     />
+                    <div class="error-span hidden"></div>
                     <p class="q-4">Have you been vaccinated?</p>
                     <div class="radio-label">
                       <input
@@ -137,6 +149,7 @@
                       />
                       <label for="vaccineyes">Yes</label>
                     </div>
+                    <div class="error-span hidden"></div>
                     <div class="radio-label">
                       <input
                         type="radio"
@@ -146,8 +159,17 @@
                       />
                       <label for="vaccineno">No</label>
                     </div>
-                    <p class="q-5">When did you get your last covid vaccine?</p>
-                    <input type="date" name="vaccinedate" id="vaccinedate" />
+                    <div class="error-span hidden"></div>
+                    <p class="q-5 hidden">
+                      When did you get your last covid vaccine?
+                    </p>
+                    <input
+                      class="hidden"
+                      type="date"
+                      name="vaccinedate"
+                      id="vaccinedate"
+                    />
+                    <div class="error-span hidden"></div>
                   </div>
                 </div>
               </div>
@@ -228,7 +250,7 @@
                 - Redberry 😇
               </p>
             </div>
-            <div class="personal-right-inner">
+            <div class="personal-right-inner hidden">
               <h2>A bit about our battles</h2>
               <p>
                 As we said, Redberry has been on the field for quite some time
@@ -239,7 +261,7 @@
                 Kubernetes, and now we have set foot in the web3 industry.
               </p>
             </div>
-            <div class="personal-right-inner hidden">
+            <div class="personal-right-inner">
               <h2>Redberry Covid Policies</h2>
               <p>
                 As this infamous pandemic took over the world, we adjusted our
