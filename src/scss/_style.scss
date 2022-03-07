@@ -18,6 +18,16 @@
   width: 455px;
   padding-left: 57px;
 }
+@keyframes animate {
+  from {
+    transform: scale(1, 0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1, 1);
+    opacity: 1;
+  }
+}
 main {
   section.homepage {
     background-color: black;
@@ -99,6 +109,8 @@ main {
         .personal-left-inner {
           @include flex-fd-jc-ai(column, center, center);
           .grouped-left {
+            transform-origin: top;
+            animation: animate 0.5s;
             @include flex-fd-jc-ai(column, center, center);
             h2 {
               font-family: $rowdiesreg;
@@ -190,6 +202,8 @@ main {
                 align-self: flex-end;
               }
               .added-skill {
+                transform-origin: top;
+                animation: animate 0.5s;
                 border: 1px solid $bordergray;
                 padding: 12px 15px;
                 @include flex-jc-ai(space-between, center);
@@ -268,6 +282,8 @@ main {
         padding: 130px 0 0 130px;
         width: 50%;
         .personal-right-inner {
+          transform-origin: top;
+          animation: animate 0.5s;
           max-width: 790px;
           width: 100%;
           @include flex-fd-jc-ai(column, center, flex-start);

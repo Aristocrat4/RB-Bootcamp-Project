@@ -208,6 +208,32 @@ a {
   padding-left: 57px;
 }
 
+@-webkit-keyframes animate {
+  from {
+    -webkit-transform: scale(1, 0);
+            transform: scale(1, 0);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+    opacity: 1;
+  }
+}
+
+@keyframes animate {
+  from {
+    -webkit-transform: scale(1, 0);
+            transform: scale(1, 0);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+    opacity: 1;
+  }
+}
+
 main section.homepage {
   background-color: black;
   background-image: url(../../assets/images/stars.png);
@@ -348,6 +374,10 @@ main .personal-information .group .personal-left .personal-left-inner {
 }
 
 main .personal-information .group .personal-left .personal-left-inner .grouped-left {
+  -webkit-transform-origin: top;
+          transform-origin: top;
+  -webkit-animation: animate 0.5s;
+          animation: animate 0.5s;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -492,6 +522,10 @@ main .personal-information .group .personal-left .personal-left-inner .grouped-l
 }
 
 main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs .added-skill {
+  -webkit-transform-origin: top;
+          transform-origin: top;
+  -webkit-animation: animate 0.5s;
+          animation: animate 0.5s;
   border: 1px solid #525557;
   padding: 12px 15px;
   display: -webkit-box;
@@ -626,6 +660,10 @@ main .personal-information .group .personal-right {
 }
 
 main .personal-information .group .personal-right .personal-right-inner {
+  -webkit-transform-origin: top;
+          transform-origin: top;
+  -webkit-animation: animate 0.5s;
+          animation: animate 0.5s;
   max-width: 790px;
   width: 100%;
   display: -webkit-box;

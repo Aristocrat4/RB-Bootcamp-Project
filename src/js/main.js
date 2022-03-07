@@ -3,10 +3,17 @@
 const prevSlideBtn = document.querySelector(".prev");
 const nextSlideBtn = document.querySelector(".next");
 const pageCircles = document.querySelectorAll(".page");
+const pageCirclesArr = Array.from(pageCircles);
 const groupLefts = document.querySelectorAll(".grouped-left");
 const groupRights = document.querySelectorAll(".personal-right-inner");
 const submitPage = document.querySelector(".submit-page");
 const backFromSubmit = document.querySelector(".goback");
+// select pagination circles
+const circle1 = document.querySelector(".circle-1");
+const circle2 = document.querySelector(".circle-2");
+const circle3 = document.querySelector(".circle-3");
+const circle4 = document.querySelector(".circle-4");
+const circle5 = document.querySelector(".circle-5");
 // select variables from first stage
 const inputFirstName = document.getElementById("firstname");
 const inputLastName = document.getElementById("lastname");
@@ -42,24 +49,6 @@ const textareaAbout = document.getElementById("devtalk-about");
 const thanksSection = document.querySelector(".thanks");
 // end of select variables
 
-// this event checks all validations and changes slider
-// if (nextSlideBtn) {
-//   nextSlideBtn.addEventListener("click", () => {
-//     if (
-//       checkFirstSliderInputs() &&
-//       checkSecondSlider() &&
-//       checkFourthInsightInputs()
-//     ) {
-//       // console.log("true");
-//       return true;
-//     } else {
-//       // console.log("false");
-//       return false;
-//     }
-//     firstFiveNums = "";
-//   });
-// }
-
 // this function checks validations for each required input
 function checkFirstSliderInputs() {
   checkFirstNameInput();
@@ -72,10 +61,8 @@ function checkFirstSliderInputs() {
     checkEmailInput() &&
     checkPhoneNumberInput()
   ) {
-    console.log(true);
     return true;
   } else {
-    console.log(false);
     return false;
   }
 }
@@ -186,8 +173,6 @@ if (inputPhoneNumber) {
     if (inputPhoneNumber.value.replace(/\s/g, "").length == 5) {
       firstFiveNums = inputPhoneNumber.value.replace(/\s/g, "");
     }
-
-    console.log(firstFiveNums);
     if (
       firstFiveNums == "+9955" &&
       inputPhoneNumber.value.replace(/\s/g, "").length == 13
@@ -283,10 +268,10 @@ function undoOptions(el) {
 // check third(covid) stage
 function checkThirdCovidStageInputs() {
   checkWork();
-  checkIfHadCovid();
   checkDateInput();
-  checkIfVaccinated();
   checkVaccineDateInput();
+  checkIfHadCovid();
+  checkIfVaccinated();
   if (
     checkWork() &&
     checkIfHadCovid() &&
@@ -323,7 +308,6 @@ function checkWork() {
     radioHybrid.parentElement.nextElementSibling.textContent =
       "*Please answer the question";
 
-    console.log("false");
     return false;
   }
 }
@@ -357,6 +341,7 @@ if (radioCovidYes) {
     if (radioCovidYes.checked) {
       questionWhenCovid.classList.remove("hidden");
       CovidDate.classList.remove("hidden");
+      return true;
     }
   });
 }
@@ -365,6 +350,7 @@ if (radioCovidNo) {
     if (!questionWhenCovid.classList.contains("hidden")) {
       questionWhenCovid.classList.add("hidden");
       CovidDate.classList.add("hidden");
+      return true;
     }
   });
 }
@@ -373,6 +359,7 @@ if (radioVaccineYes) {
     if (radioVaccineYes.checked) {
       questionWhenVaccinated.classList.remove("hidden");
       VaccineDate.classList.remove("hidden");
+      return true;
     }
   });
 }
@@ -381,6 +368,7 @@ if (radioVaccineNo) {
     if (!questionWhenVaccinated.classList.contains("hidden")) {
       questionWhenVaccinated.classList.add("hidden");
       VaccineDate.classList.add("hidden");
+      return true;
     }
   });
 }
@@ -398,8 +386,8 @@ function checkIfHadCovid() {
       radioCovidYes.parentElement.nextSibling.nextSibling.classList.add(
         "hidden"
       );
-      return true;
     }
+    return true;
   } else {
     radioCovidNo.parentElement.nextElementSibling.classList.remove("hidden");
     radioCovidYes.parentElement.nextElementSibling.classList.remove("hidden");
@@ -419,14 +407,16 @@ function checkDateInput() {
     CovidDate.nextElementSibling.classList.remove("hidden");
     CovidDate.nextElementSibling.textContent = "*Select date, please";
     return false;
+  } else if (CovidDate.value !== "") {
+    return true;
   }
+  return true;
 }
 if (CovidDate) {
   CovidDate.addEventListener("input", () => {
     if (CovidDate.value !== "") {
       CovidDate.classList.remove("error-border");
       CovidDate.nextElementSibling.classList.add("hidden");
-      return true;
     }
   });
 }
@@ -444,8 +434,8 @@ function checkIfVaccinated() {
       radioVaccineYes.parentElement.nextSibling.nextSibling.classList.add(
         "hidden"
       );
-      return true;
     }
+    return true;
   } else {
     radioVaccineNo.parentElement.nextElementSibling.classList.remove("hidden");
     radioVaccineYes.parentElement.nextElementSibling.classList.remove("hidden");
@@ -465,15 +455,18 @@ function checkVaccineDateInput() {
     VaccineDate.nextElementSibling.classList.remove("hidden");
     VaccineDate.nextElementSibling.textContent = "*Select date, please";
     return false;
+  } else if (VaccineDate.value !== "") {
+    return true;
   }
+  return true;
 }
 if (VaccineDate) {
   VaccineDate.addEventListener("input", () => {
     if (VaccineDate.value !== "") {
       VaccineDate.classList.remove("error-border");
       VaccineDate.nextElementSibling.classList.add("hidden");
-      return true;
     }
+    return true;
   });
 }
 // check all validations on fourth(insights) stage
@@ -505,8 +498,8 @@ function checkDevtalksRadio() {
       radioDevtalksYes.parentElement.nextSibling.nextSibling.classList.add(
         "hidden"
       );
-      return true;
     }
+    return true;
   } else {
     radioDevtalksNo.parentElement.nextElementSibling.classList.remove("hidden");
     radioDevtalksYes.parentElement.nextElementSibling.classList.remove(
@@ -529,6 +522,8 @@ function checkTextareas(el) {
     el.nextElementSibling.textContent = "*Fill this form please";
     el.classList.add("error-border");
     return false;
+  } else {
+    return true;
   }
 }
 // listen textareas and clear if its filled
@@ -558,59 +553,252 @@ if (thanksSection) {
 }
 // make pagination alive
 let pageCounter = 1;
+let nextPage = false;
 if (pageCircles) {
-  nextSlideBtn.addEventListener("click", () => {
-    if (pageCounter == 1 && checkFirstSliderInputs()) {
-      pageCounter++;
+  pageCirclesArr.slice(0, 1).forEach((el) => {
+    el.classList.add("opacitymax");
+  });
+  if (nextSlideBtn) {
+    nextSlideBtn.addEventListener("click", () => {
+      nextPage = true;
+      if (pageCounter == 1 && nextPage) {
+        if (checkFirstSliderInputs()) {
+          pageCounter++;
+          pageCirclesArr.slice(0, 2).forEach((el) => {
+            el.classList.add("opacitymax");
+          });
+          groupLefts.forEach((el, i) => {
+            if (!el.classList.contains("hidden")) {
+              el.classList.add("hidden");
+            }
+          });
+          groupLefts[pageCounter - 1].classList.remove("hidden");
+          groupRights.forEach((el, i) => {
+            if (!el.classList.contains("hidden")) {
+              el.classList.add("hidden");
+            }
+          });
+          groupRights[pageCounter - 1].classList.remove("hidden");
+        }
+        nextPage = false;
+      } else {
+        checkFirstSliderInputs();
+      }
+      if (pageCounter == 2 && nextPage) {
+        if (checkSecondSlider()) {
+          pageCounter++;
+          pageCirclesArr.slice(0, 3).forEach((el) => {
+            el.classList.add("opacitymax");
+          });
+          groupLefts.forEach((el, i) => {
+            if (!el.classList.contains("hidden")) {
+              el.classList.add("hidden");
+            }
+          });
+          groupLefts[pageCounter - 1].classList.remove("hidden");
+          groupRights.forEach((el, i) => {
+            if (!el.classList.contains("hidden")) {
+              el.classList.add("hidden");
+            }
+          });
+          groupRights[pageCounter - 1].classList.remove("hidden");
+        }
+        nextPage = false;
+      } else {
+        checkSecondSlider();
+      }
+      if (pageCounter == 3 && nextPage) {
+        if (checkThirdCovidStageInputs()) {
+          pageCounter++;
+          groupLefts.forEach((el, i) => {
+            if (!el.classList.contains("hidden")) {
+              el.classList.add("hidden");
+            }
+          });
+          groupLefts[pageCounter - 1].classList.remove("hidden");
+          groupRights.forEach((el, i) => {
+            if (!el.classList.contains("hidden")) {
+              el.classList.add("hidden");
+            }
+          });
+          groupRights[pageCounter - 1].classList.remove("hidden");
+          pageCirclesArr.slice(0, 4).forEach((el) => {
+            el.classList.add("opacitymax");
+          });
+        }
+        nextPage = false;
+      } else {
+        checkThirdCovidStageInputs();
+      }
+      if (pageCounter == 4 && nextPage) {
+        if (checkFourthInsightInputs()) {
+          pageCounter++;
+          groupLefts.forEach((el, i) => {
+            if (!el.classList.contains("hidden")) {
+              el.classList.add("hidden");
+            }
+          });
+          groupRights.forEach((el, i) => {
+            if (!el.classList.contains("hidden")) {
+              el.classList.add("hidden");
+            }
+          });
+          submitPage.classList.remove("top-hide");
+        }
+      } else {
+        checkFourthInsightInputs();
+      }
+    });
+  }
+  if (prevSlideBtn) {
+    prevSlideBtn.addEventListener("click", () => {
+      if (pageCounter == 1) {
+        window.location.href = "/index.html";
+      }
+      pageCounter--;
       groupLefts.forEach((el, i) => {
         if (!el.classList.contains("hidden")) {
           el.classList.add("hidden");
         }
       });
       groupLefts[pageCounter - 1].classList.remove("hidden");
-    } else {
-      checkFirstSliderInputs();
-    }
-    if (pageCounter == 2 && checkSecondSlider()) {
-      pageCounter++;
+      groupRights.forEach((el, i) => {
+        if (!el.classList.contains("hidden")) {
+          el.classList.add("hidden");
+        }
+      });
+      groupRights[pageCounter - 1].classList.remove("hidden");
+      pageCirclesArr[pageCounter].classList.remove("opacitymax");
+    });
+  }
+  if (submitPage) {
+    backFromSubmit.addEventListener("click", () => {
+      pageCounter = 4;
       groupLefts.forEach((el, i) => {
         if (!el.classList.contains("hidden")) {
           el.classList.add("hidden");
         }
       });
       groupLefts[pageCounter - 1].classList.remove("hidden");
-    } else {
-      checkSecondSlider();
-    }
-    if (pageCounter == 3 && checkThirdCovidStageInputs()) {
-      pageCounter++;
+      groupRights.forEach((el, i) => {
+        if (!el.classList.contains("hidden")) {
+          el.classList.add("hidden");
+        }
+      });
+      groupRights[pageCounter - 1].classList.remove("hidden");
+      submitPage.classList.add("top-hide");
+    });
+  }
+  circle1.addEventListener("click", () => {
+    pageCounter = 1;
+    pageCirclesArr.forEach((el, i) => {
+      if (el.classList.contains("opacitymax")) {
+        el.classList.remove("opacitymax");
+      }
+    });
+    circle1.classList.add("opacitymax");
+    groupLefts.forEach((el, i) => {
+      if (!el.classList.contains("hidden")) {
+        el.classList.add("hidden");
+      }
+    });
+    groupLefts[pageCounter - 1].classList.remove("hidden");
+    groupRights.forEach((el, i) => {
+      if (!el.classList.contains("hidden")) {
+        el.classList.add("hidden");
+      }
+    });
+    groupRights[pageCounter - 1].classList.remove("hidden");
+  });
+  circle2.addEventListener("click", () => {
+    if (checkFirstSliderInputs()) {
+      pageCounter = 2;
+      pageCirclesArr.forEach((el, i) => {
+        if (el.classList.contains("opacitymax")) {
+          el.classList.remove("opacitymax");
+        }
+      });
+      circle1.classList.add("opacitymax");
+      circle2.classList.add("opacitymax");
       groupLefts.forEach((el, i) => {
         if (!el.classList.contains("hidden")) {
           el.classList.add("hidden");
         }
       });
       groupLefts[pageCounter - 1].classList.remove("hidden");
-    } else {
-      checkThirdCovidStageInputs();
+      groupRights.forEach((el, i) => {
+        if (!el.classList.contains("hidden")) {
+          el.classList.add("hidden");
+        }
+      });
+      groupRights[pageCounter - 1].classList.remove("hidden");
     }
-    if (pageCounter == 4 && checkFourthInsightInputs()) {
-      pageCounter++;
+  });
+  circle3.addEventListener("click", () => {
+    if (checkSecondSlider()) {
+      pageCounter = 3;
+      pageCirclesArr.forEach((el, i) => {
+        if (el.classList.contains("opacitymax")) {
+          el.classList.remove("opacitymax");
+        }
+      });
+      circle1.classList.add("opacitymax");
+      circle2.classList.add("opacitymax");
+      circle3.classList.add("opacitymax");
       groupLefts.forEach((el, i) => {
+        if (!el.classList.contains("hidden")) {
+          el.classList.add("hidden");
+        }
+      });
+      groupLefts[pageCounter - 1].classList.remove("hidden");
+      groupRights.forEach((el, i) => {
+        if (!el.classList.contains("hidden")) {
+          el.classList.add("hidden");
+        }
+      });
+      groupRights[pageCounter - 1].classList.remove("hidden");
+    }
+  });
+  circle4.addEventListener("click", () => {
+    if (checkThirdCovidStageInputs()) {
+      pageCounter = 4;
+      pageCirclesArr.forEach((el, i) => {
+        if (el.classList.contains("opacitymax")) {
+          el.classList.remove("opacitymax");
+        }
+      });
+      circle1.classList.add("opacitymax");
+      circle2.classList.add("opacitymax");
+      circle3.classList.add("opacitymax");
+      circle4.classList.add("opacitymax");
+      groupLefts.forEach((el, i) => {
+        if (!el.classList.contains("hidden")) {
+          el.classList.add("hidden");
+        }
+      });
+      groupLefts[pageCounter - 1].classList.remove("hidden");
+      groupRights.forEach((el, i) => {
+        if (!el.classList.contains("hidden")) {
+          el.classList.add("hidden");
+        }
+      });
+      groupRights[pageCounter - 1].classList.remove("hidden");
+    }
+  });
+  circle5.addEventListener("click", () => {
+    if (checkFourthInsightInputs()) {
+      pageCounter = 5;
+      groupLefts.forEach((el, i) => {
+        if (!el.classList.contains("hidden")) {
+          el.classList.add("hidden");
+        }
+      });
+      groupRights.forEach((el, i) => {
         if (!el.classList.contains("hidden")) {
           el.classList.add("hidden");
         }
       });
       submitPage.classList.remove("top-hide");
-    } else {
-      checkFourthInsightInputs();
     }
-  });
-  prevSlideBtn.addEventListener("click", () => {
-    pageCounter--;
-  });
-  pageCircles.forEach((el, i) => {
-    el.addEventListener("click", () => {
-      pageCounter + i + 1;
-    });
   });
 }
