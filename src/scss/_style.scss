@@ -345,6 +345,8 @@ main {
           }
         }
         .app-content {
+          transform-origin: top;
+          animation: animate 0.5s;
           padding: 40px 70px 0 130px;
           @include flex-jc(space-between);
           flex-wrap: wrap;

@@ -776,6 +776,10 @@ main section.submitted .application .collect-each-row .app-row .numberofapp {
 }
 
 main section.submitted .application .collect-each-row .app-content {
+  -webkit-transform-origin: top;
+          transform-origin: top;
+  -webkit-animation: animate 0.5s;
+          animation: animate 0.5s;
   padding: 40px 70px 0 130px;
   display: -webkit-box;
   display: -ms-flexbox;

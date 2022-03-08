@@ -1,4 +1,8 @@
 // select variables
+// form
+const formFull = document.querySelector(".personal-information");
+const btnSubmit = document.querySelector(".submit");
+const skillsArray = [];
 // pagination
 const prevSlideBtn = document.querySelector(".prev");
 const nextSlideBtn = document.querySelector(".next");
@@ -25,6 +29,7 @@ const inputExperienceYears = document.getElementById("experience");
 const btnAddSkill = document.querySelector(".add-lang-btn");
 const boxForAddedSkills = document.querySelector(".added-skills-group");
 const addedSkillRow = document.querySelector(".added-skill");
+const experienceYears = document.querySelectorAll(".experience-years");
 // select variables from third(covid) stage
 const radioOffice = document.getElementById("office");
 const radioHome = document.getElementById("home");
@@ -178,7 +183,7 @@ if (inputPhoneNumber) {
       inputPhoneNumber.value.replace(/\s/g, "").length == 13
     ) {
       clearError(inputPhoneNumber);
-      return true;
+      return inputPhoneNumber.value.replace(/\s/g, "");
     }
   });
 }
@@ -217,7 +222,7 @@ function clearError(input) {
   }
 }
 
-// fetch skills and add options inside select input
+// fetch get skills and add options inside select input
 if (selectSkill) {
   fetch("https://bootcamp-2022.devtest.ge/api/skills")
     .then((response) => response.json())
@@ -227,6 +232,200 @@ if (selectSkill) {
               <option id="${element.title}" value="${element.title}">${element.title}</option>
               `;
         selectSkill.insertAdjacentHTML("afterbegin", skillOption);
+      });
+    });
+}
+// unhide submitted applications content on click red rectangle
+if (document.querySelector(".submitted")) {
+}
+// get fetch submitted applications
+if (document.querySelector(".submitted")) {
+  const parentApplication = document.querySelector(".application");
+  fetch(
+    "https://bootcamp-2022.devtest.ge/api/applications?token=9a8cb48c-2007-413c-822c-b1876a1feb07"
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      data.forEach((element, i) => {
+        const submittedAppRow = `
+        <div class="collect-each-row">
+            <div class="app-row">
+              <span class="numberofapp">${i + 1}</span>
+              <img src="../../assets/images/Vector.png" alt="app-arrow" />
+            </div>
+            <div class="app-content hidden">
+              <div class="block">
+                <h3>Personal Information</h3>
+                <div class="block-collect-info">
+                  <div class="first-name">
+                    <h4>first name</h4>
+                    <span class="name">${element.first_name}</span>
+                  </div>
+                  <div class="last-name">
+                    <h4>last name</h4>
+                    <span class="surname">${element.last_name}</span>
+                  </div>
+                  <div class="e-mail">
+                    <h4>e mail</h4>
+                    <span class="emailofapp">${element.email}</span>
+                  </div>
+                  <div class="phone-num">
+                    <h4>phone</h4>
+                    <span class="phonenum">${element.phone}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="block">
+                <h3>skillset</h3>
+                <div class="block-collect-info">
+               ${element.skills.map((el, u) => {
+                 return ` <div class="skillset-block">
+                     <h4>${element.skills[u].id}</h4>
+                     <span class="skill-experience">
+                       Years of Experience:${element.skills[u].experience}
+                     </span>
+                   </div>
+                   `;
+               })}
+                </div>
+              </div>
+              <div class="block">
+                <h3>covid situation</h3>
+                <div class="block-collect-info">
+                  <p>How would you prefer to work?</p>
+                  <div class="answer-1">
+                    <img
+                      src="../../assets/images/${
+                        element.work_preference == "from_office"
+                          ? "active"
+                          : "inactive"
+                      }-button.png"
+                      alt="selected"
+                    />
+                    <span>From Sairme Office</span>
+                  </div>
+                  <div class="answer-1">
+                    <img
+                      src="../../assets/images/${
+                        element.work_preference == "from_home"
+                          ? "active"
+                          : "inactive"
+                      }-button.png"
+                      alt="selected"
+                    />
+                    <span>From Home</span>
+                  </div>
+                  <div class="answer-1">
+                    <img
+                      src="../../assets/images/${
+                        element.work_preference == "hybrid"
+                          ? "active"
+                          : "inactive"
+                      }-button.png"
+                      alt="selected"
+                    />
+                    <span>Hybrid</span>
+                  </div>
+                  <p>Did you have covid 19?</p>
+                  <div class="answer-2">
+                    <img
+                      src="../../assets/images/${
+                        element.had_covid ? "active" : "inactive"
+                      }-button.png"
+                      alt="selected"
+                    />
+                    <span>Yes</span>
+                  </div>
+                  <div class="answer-2">
+                    <img
+                      src="../../assets/images/${
+                        !element.had_covid ? "active" : "inactive"
+                      }-button.png"
+                      alt="selected"
+                    />
+                    <span>No</span>
+                  </div>
+                  <p>When did you have covid 19?</p>
+                  <div class="covid-had-date">
+                    <span>${element.had_covid_at}</span>
+                    <img
+                      src="../../assets/images/calendar.png"
+                      alt="coviddate"
+                    />
+                  </div>
+                  <p>Have you been vaccinated?</p>
+                  <div class="answer-3">
+                    <img
+                      src="../../assets/images/${
+                        element.vaccinated == true ? "active" : "inactive"
+                      }-button.png"
+                      alt="selected"
+                    />
+                    <span>Yes</span>
+                  </div>
+                  <div class="answer-3">
+                    <img
+                      src="../../assets/images/${
+                        !element.vaccinated ? "active" : "inactive"
+                      }-button.png"
+                      alt="selected"
+                    />
+                    <span>No</span>
+                  </div>
+                  <p>When did you get covid vaccine?</p>
+                  <div class="covid-vaccine-date">
+                    <span>${element.vaccinated_at}</span>
+                    <img
+                      src="../../assets/images/calendar.png"
+                      alt="vaccinedate"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="block">
+                <h3>insights</h3>
+                <div class="block-collect-info">
+                  <p>
+                    Would you attend Devtalks and maybe also organize your own?
+                  </p>
+                  <div class="answer-4">
+                    <img
+                      src="../../assets/images/${
+                        element.will_organize_devtalk ? "active" : "inactive"
+                      }-button.png"
+                      alt="selected"
+                    />
+                    <span>Yes</span>
+                  </div>
+                  <div class="answer-4">
+                    <img
+                      src="../../assets/images/${
+                        !element.will_organize_devtalk ? "active" : "inactive"
+                      }-button.png"
+                      alt="selected"
+                    />
+                    <span>No</span>
+                  </div>
+                  <p>What would you speak about at Devtalk?</p>
+                  <div class="textarea-result-devtalk">
+                    <p>${element.devtalk_topic}</p>
+                  </div>
+                  <p>Tell us something special</p>
+                  <div class="textarea-result-smth">
+                    <p>${element.something_special}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+                `;
+        parentApplication.insertAdjacentHTML("afterbegin", submittedAppRow);
+      });
+      const redSubmittedRow = document.querySelectorAll(".app-row");
+      redSubmittedRow.forEach((el, i) => {
+        el.addEventListener("click", (e) => {
+          el.nextElementSibling.classList.toggle("hidden");
+        });
       });
     });
 }
@@ -245,6 +444,26 @@ if (btnAddSkill) {
                               />
                             </div>
                 `;
+    skillsArray.push({
+      id:
+        skills.value == "HTML"
+          ? 1
+          : skills.value == "CSS"
+          ? 2
+          : skills.value == "Svelte"
+          ? 3
+          : skills.value == "Angular"
+          ? 4
+          : skills.value == "Vue.JS"
+          ? 5
+          : skills.value == "React.JS"
+          ? 6
+          : skills.value == "Laravel"
+          ? 7
+          : 8,
+      experience: inputExperienceYears.value,
+    });
+    console.log();
     if (inputExperienceYears.value && skills.value) {
       boxForAddedSkills.insertAdjacentHTML("afterbegin", addedSkillRow);
       const selectedOption = document.getElementById(`${skills.value}`);
@@ -689,37 +908,15 @@ if (pageCircles) {
       submitPage.classList.add("top-hide");
     });
   }
-  circle1.addEventListener("click", () => {
-    pageCounter = 1;
-    pageCirclesArr.forEach((el, i) => {
-      if (el.classList.contains("opacitymax")) {
-        el.classList.remove("opacitymax");
-      }
-    });
-    circle1.classList.add("opacitymax");
-    groupLefts.forEach((el, i) => {
-      if (!el.classList.contains("hidden")) {
-        el.classList.add("hidden");
-      }
-    });
-    groupLefts[pageCounter - 1].classList.remove("hidden");
-    groupRights.forEach((el, i) => {
-      if (!el.classList.contains("hidden")) {
-        el.classList.add("hidden");
-      }
-    });
-    groupRights[pageCounter - 1].classList.remove("hidden");
-  });
-  circle2.addEventListener("click", () => {
-    if (checkFirstSliderInputs()) {
-      pageCounter = 2;
+  if (circle1) {
+    circle1.addEventListener("click", () => {
+      pageCounter = 1;
       pageCirclesArr.forEach((el, i) => {
         if (el.classList.contains("opacitymax")) {
           el.classList.remove("opacitymax");
         }
       });
       circle1.classList.add("opacitymax");
-      circle2.classList.add("opacitymax");
       groupLefts.forEach((el, i) => {
         if (!el.classList.contains("hidden")) {
           el.classList.add("hidden");
@@ -732,73 +929,174 @@ if (pageCircles) {
         }
       });
       groupRights[pageCounter - 1].classList.remove("hidden");
+    });
+  }
+  if (circle2) {
+    circle2.addEventListener("click", () => {
+      if (checkFirstSliderInputs()) {
+        pageCounter = 2;
+        pageCirclesArr.forEach((el, i) => {
+          if (el.classList.contains("opacitymax")) {
+            el.classList.remove("opacitymax");
+          }
+        });
+        circle1.classList.add("opacitymax");
+        circle2.classList.add("opacitymax");
+        groupLefts.forEach((el, i) => {
+          if (!el.classList.contains("hidden")) {
+            el.classList.add("hidden");
+          }
+        });
+        groupLefts[pageCounter - 1].classList.remove("hidden");
+        groupRights.forEach((el, i) => {
+          if (!el.classList.contains("hidden")) {
+            el.classList.add("hidden");
+          }
+        });
+        groupRights[pageCounter - 1].classList.remove("hidden");
+      }
+    });
+  }
+  if (circle3) {
+    circle3.addEventListener("click", () => {
+      if (checkSecondSlider()) {
+        pageCounter = 3;
+        pageCirclesArr.forEach((el, i) => {
+          if (el.classList.contains("opacitymax")) {
+            el.classList.remove("opacitymax");
+          }
+        });
+        circle1.classList.add("opacitymax");
+        circle2.classList.add("opacitymax");
+        circle3.classList.add("opacitymax");
+        groupLefts.forEach((el, i) => {
+          if (!el.classList.contains("hidden")) {
+            el.classList.add("hidden");
+          }
+        });
+        groupLefts[pageCounter - 1].classList.remove("hidden");
+        groupRights.forEach((el, i) => {
+          if (!el.classList.contains("hidden")) {
+            el.classList.add("hidden");
+          }
+        });
+        groupRights[pageCounter - 1].classList.remove("hidden");
+      }
+    });
+  }
+  if (circle4) {
+    circle4.addEventListener("click", () => {
+      if (checkThirdCovidStageInputs()) {
+        pageCounter = 4;
+        pageCirclesArr.forEach((el, i) => {
+          if (el.classList.contains("opacitymax")) {
+            el.classList.remove("opacitymax");
+          }
+        });
+        circle1.classList.add("opacitymax");
+        circle2.classList.add("opacitymax");
+        circle3.classList.add("opacitymax");
+        circle4.classList.add("opacitymax");
+        groupLefts.forEach((el, i) => {
+          if (!el.classList.contains("hidden")) {
+            el.classList.add("hidden");
+          }
+        });
+        groupLefts[pageCounter - 1].classList.remove("hidden");
+        groupRights.forEach((el, i) => {
+          if (!el.classList.contains("hidden")) {
+            el.classList.add("hidden");
+          }
+        });
+        groupRights[pageCounter - 1].classList.remove("hidden");
+      }
+    });
+  }
+  if (circle5) {
+    circle5.addEventListener("click", () => {
+      if (checkFourthInsightInputs()) {
+        pageCounter = 5;
+        groupLefts.forEach((el, i) => {
+          if (!el.classList.contains("hidden")) {
+            el.classList.add("hidden");
+          }
+        });
+        groupRights.forEach((el, i) => {
+          if (!el.classList.contains("hidden")) {
+            el.classList.add("hidden");
+          }
+        });
+        submitPage.classList.remove("top-hide");
+      }
+    });
+  }
+}
+// send data to api
+if (formFull) {
+  const url = "https://bootcamp-2022.devtest.ge/api/application";
+  formFull.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const data = {
+      token: "9a8cb48c-2007-413c-822c-b1876a1feb07",
+      first_name: `${inputFirstName.value}`,
+      last_name: `${inputLastName.value}`,
+      email: `${inputEmail.value}`,
+
+      skills: [...skillsArray],
+      work_preference: `${
+        radioOffice.checked
+          ? "from_office"
+          : radioHome.checked
+          ? "from_home"
+          : "hybrid"
+      }`,
+      had_covid: radioCovidYes.checked,
+
+      vaccinated: radioVaccineYes.checked,
+
+      will_organize_devtalk: radioDevtalksYes.checked,
+
+      something_special: `${textareaSpecial.value}`,
+    };
+    if (inputPhoneNumber.value) {
+      data.phone = `${inputPhoneNumber.value.trim()};`;
     }
-  });
-  circle3.addEventListener("click", () => {
-    if (checkSecondSlider()) {
-      pageCounter = 3;
-      pageCirclesArr.forEach((el, i) => {
-        if (el.classList.contains("opacitymax")) {
-          el.classList.remove("opacitymax");
-        }
-      });
-      circle1.classList.add("opacitymax");
-      circle2.classList.add("opacitymax");
-      circle3.classList.add("opacitymax");
-      groupLefts.forEach((el, i) => {
-        if (!el.classList.contains("hidden")) {
-          el.classList.add("hidden");
-        }
-      });
-      groupLefts[pageCounter - 1].classList.remove("hidden");
-      groupRights.forEach((el, i) => {
-        if (!el.classList.contains("hidden")) {
-          el.classList.add("hidden");
-        }
-      });
-      groupRights[pageCounter - 1].classList.remove("hidden");
+    if (radioCovidYes.checked) {
+      data.had_covid_at = `${CovidDate.value + ""}`;
     }
-  });
-  circle4.addEventListener("click", () => {
-    if (checkThirdCovidStageInputs()) {
-      pageCounter = 4;
-      pageCirclesArr.forEach((el, i) => {
-        if (el.classList.contains("opacitymax")) {
-          el.classList.remove("opacitymax");
-        }
-      });
-      circle1.classList.add("opacitymax");
-      circle2.classList.add("opacitymax");
-      circle3.classList.add("opacitymax");
-      circle4.classList.add("opacitymax");
-      groupLefts.forEach((el, i) => {
-        if (!el.classList.contains("hidden")) {
-          el.classList.add("hidden");
-        }
-      });
-      groupLefts[pageCounter - 1].classList.remove("hidden");
-      groupRights.forEach((el, i) => {
-        if (!el.classList.contains("hidden")) {
-          el.classList.add("hidden");
-        }
-      });
-      groupRights[pageCounter - 1].classList.remove("hidden");
+    if (radioVaccineYes.checked) {
+      data.vaccinated_at = `${VaccineDate.value + ""}`;
     }
-  });
-  circle5.addEventListener("click", () => {
-    if (checkFourthInsightInputs()) {
-      pageCounter = 5;
-      groupLefts.forEach((el, i) => {
-        if (!el.classList.contains("hidden")) {
-          el.classList.add("hidden");
-        }
+    if (radioDevtalksYes.checked) {
+      data.devtalk_topic = `${textareaAbout.value}`;
+    }
+    console.log(data);
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+        },
       });
-      groupRights.forEach((el, i) => {
-        if (!el.classList.contains("hidden")) {
-          el.classList.add("hidden");
-        }
-      });
-      submitPage.classList.remove("top-hide");
+      window.location.href = "/src/pages/finish.html";
+    } catch (error) {
+      console.log(error);
     }
   });
 }
+
+//   const formData = new FormData(formFull);
+//   const formDataSend = Object.fromEntries(formData);
+//   const jsonObject = {
+//     first_name,
+//     last_name,
+//     email,
+//     phone,
+//     skills: {
+//         id: `${addedSkillRow}`
+//     },
+//
+//   };
+//   console.log(jsonObject);
