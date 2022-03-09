@@ -3,6 +3,7 @@
 const formFull = document.querySelector(".personal-information");
 const btnSubmit = document.querySelector(".submit");
 const skillsArray = [];
+const dataSkills = [];
 // pagination
 const prevSlideBtn = document.querySelector(".prev");
 const nextSlideBtn = document.querySelector(".next");
@@ -228,14 +229,16 @@ if (selectSkill) {
   fetch("https://bootcamp-2022.devtest.ge/api/skills")
     .then((response) => response.json())
     .then((data) => {
-      data.forEach((element) => {
+      data.forEach((element, o) => {
+        dataSkills.push(element);
         const skillOption = `
-              <option id="${element.title}" value="${element.title}">${element.title}</option>
+              <option id="${dataSkills[o].title}" value="${dataSkills[o].title}">${dataSkills[o].title}</option>
               `;
         selectSkill.insertAdjacentHTML("afterbegin", skillOption);
       });
     });
 }
+
 // unhide submitted applications content on click red rectangle
 if (document.querySelector(".submitted")) {
 }
@@ -279,6 +282,7 @@ if (document.querySelector(".submitted")) {
               <div class="block">
                 <h3>skillset</h3>
                 <div class="block-collect-info">
+                
                ${element.skills.map((el, u) => {
                  return ` <div class="skillset-block">
                      <h4>${element.skills[u].id}</h4>

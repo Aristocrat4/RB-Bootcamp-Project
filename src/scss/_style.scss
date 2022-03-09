@@ -165,7 +165,13 @@ main {
               }
               .covid-inner {
                 width: 645px;
-                input[type="date"]::-webkit-calendar-indicator {
+                #coviddate,
+                #vaccinedate {
+                  background-image: url(../../assets/images/calendar.png);
+                  background-repeat: no-repeat;
+                  background-position: 97%;
+                }
+                input[type="date"]::-webkit-calendar-picker-indicator {
                   opacity: 0;
                 }
                 .radio-label {

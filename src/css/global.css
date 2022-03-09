@@ -476,7 +476,14 @@ main .personal-information .group .personal-left .personal-left-inner .grouped-l
   width: 645px;
 }
 
-main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs .covid-inner input[type="date"]::-webkit-calendar-indicator {
+main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs .covid-inner #coviddate,
+main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs .covid-inner #vaccinedate {
+  background-image: url(../../assets/images/calendar.png);
+  background-repeat: no-repeat;
+  background-position: 97%;
+}
+
+main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs .covid-inner input[type="date"]::-webkit-calendar-picker-indicator {
   opacity: 0;
 }
 

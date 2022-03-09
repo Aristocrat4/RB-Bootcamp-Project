@@ -133,10 +133,12 @@
                     <p class="q-3 hidden">When?</p>
                     <input
                       class="hidden"
-                      type="date"
+                      type="text"
                       name="coviddate"
                       id="coviddate"
                       placeholder="Date"
+                      onfocus="(this.type='date')"
+                      onblur="(this.type='text')"
                     />
                     <div class="error-span hidden"></div>
                     <p class="q-4">Have you been vaccinated?</p>
@@ -165,9 +167,12 @@
                     </p>
                     <input
                       class="hidden"
-                      type="date"
+                      type="text"
                       name="vaccinedate"
                       id="vaccinedate"
+                      placeholder="Date"
+                      onfocus="(this.type='date')"
+                      onblur="(this.type='text')"
                     />
                     <div class="error-span hidden"></div>
                   </div>
