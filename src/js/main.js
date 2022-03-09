@@ -45,6 +45,7 @@ const questionHadCovid = document.querySelector(".q-2");
 const questionWhenCovid = document.querySelector(".q-3");
 const questionVaccinated = document.querySelector(".q-4");
 const questionWhenVaccinated = document.querySelector(".q-5");
+const questionDevtalksAbout = document.querySelector(".q-6");
 // select variables from fourth(insights) stage
 const radioDevtalksYes = document.getElementById("devtalksyes");
 const radioDevtalksNo = document.getElementById("devtalksno");
@@ -463,7 +464,6 @@ if (btnAddSkill) {
           : 8,
       experience: inputExperienceYears.value,
     });
-    console.log();
     if (inputExperienceYears.value && skills.value) {
       boxForAddedSkills.insertAdjacentHTML("afterbegin", addedSkillRow);
       const selectedOption = document.getElementById(`${skills.value}`);
@@ -587,6 +587,24 @@ if (radioVaccineNo) {
     if (!questionWhenVaccinated.classList.contains("hidden")) {
       questionWhenVaccinated.classList.add("hidden");
       VaccineDate.classList.add("hidden");
+      return true;
+    }
+  });
+}
+if (radioDevtalksYes) {
+  radioDevtalksYes.addEventListener("change", () => {
+    if (radioDevtalksYes.checked) {
+      questionDevtalksAbout.classList.remove("hidden");
+      textareaAbout.classList.remove("hidden");
+      return true;
+    }
+  });
+}
+if (radioDevtalksNo) {
+  radioDevtalksNo.addEventListener("change", () => {
+    if (!questionDevtalksAbout.classList.contains("hidden")) {
+      questionDevtalksAbout.classList.add("hidden");
+      textareaAbout.classList.add("hidden");
       return true;
     }
   });
@@ -736,14 +754,15 @@ removeErrorFromRadioInputs(radioDevtalksYes, radioDevtalksNo);
 removeErrorFromRadioInputs(radioDevtalksNo, radioDevtalksYes);
 // check textarea validations
 function checkTextareas(el) {
-  if (el.value == "") {
+  if (el.value == "" && !el.classList.contains("hidden")) {
     el.nextElementSibling.classList.remove("hidden");
     el.nextElementSibling.textContent = "*Fill this form please";
     el.classList.add("error-border");
     return false;
-  } else {
+  } else if (el.value !== "") {
     return true;
   }
+  return true;
 }
 // listen textareas and clear if its filled
 if (textareaAbout) {
@@ -1070,7 +1089,6 @@ if (formFull) {
     if (radioDevtalksYes.checked) {
       data.devtalk_topic = `${textareaAbout.value}`;
     }
-    console.log(data);
     try {
       const response = await fetch(url, {
         method: "POST",
@@ -1086,17 +1104,3 @@ if (formFull) {
     }
   });
 }
-
-//   const formData = new FormData(formFull);
-//   const formDataSend = Object.fromEntries(formData);
-//   const jsonObject = {
-//     first_name,
-//     last_name,
-//     email,
-//     phone,
-//     skills: {
-//         id: `${addedSkillRow}`
-//     },
-//
-//   };
-//   console.log(jsonObject);

@@ -82,6 +82,7 @@ main {
       @include flex-fd-jc-ai(column, center, center);
       z-index: 9;
       .submit {
+        cursor: pointer;
         text-transform: capitalize;
         color: $white;
         background-color: $redberryred;
@@ -93,6 +94,7 @@ main {
         padding: 16px 131px;
       }
       .goback {
+        cursor: pointer;
         color: $white;
         text-decoration: underline;
         font-size: 28px;
@@ -146,6 +148,8 @@ main {
                   }
                 }
                 p:not(.q-5) {
+                  transform-origin: top;
+                  animation: animate 0.5s;
                   font-family: $montserratreg;
                   font-size: 18px;
                   color: #000;
@@ -221,6 +225,8 @@ main {
 
               input:not([type="radio"]),
               select {
+                transform-origin: top;
+                animation: animate 0.5s;
                 appearance: none;
                 width: 455px;
                 height: 54px;
@@ -335,6 +341,7 @@ main {
       .collect-each-row {
         margin-bottom: 10px;
         .app-row {
+          cursor: pointer;
           @include flex-jc-ai(space-between, center);
           padding: 23px 20px;
           background-color: $redberryred;
@@ -423,6 +430,8 @@ main {
               }
               .textarea-result-devtalk,
               .textarea-result-smth {
+                transform-origin: top;
+                animation: animate 0.5s;
                 min-height: 120px;
                 max-width: 430px;
                 padding: 24px 20px 0 24px;

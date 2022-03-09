@@ -320,6 +320,7 @@ main .personal-information .submit-page {
 }
 
 main .personal-information .submit-page .submit {
+  cursor: pointer;
   text-transform: capitalize;
   color: #ffffff;
   background-color: #fe3b1f;
@@ -332,6 +333,7 @@ main .personal-information .submit-page .submit {
 }
 
 main .personal-information .submit-page .goback {
+  cursor: pointer;
   color: #ffffff;
   text-decoration: underline;
   font-size: 28px;
@@ -452,6 +454,10 @@ main .personal-information .group .personal-left .personal-left-inner .grouped-l
 }
 
 main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs .about-inner p:not(.q-5) {
+  -webkit-transform-origin: top;
+          transform-origin: top;
+  -webkit-animation: animate 0.5s;
+          animation: animate 0.5s;
   font-family: "Montserrat-Regular";
   font-size: 18px;
   color: #000;
@@ -552,6 +558,10 @@ main .personal-information .group .personal-left .personal-left-inner .grouped-l
 
 main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs input:not([type="radio"]),
 main .personal-information .group .personal-left .personal-left-inner .grouped-left .collect-inputs select {
+  -webkit-transform-origin: top;
+          transform-origin: top;
+  -webkit-animation: animate 0.5s;
+          animation: animate 0.5s;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -756,6 +766,7 @@ main section.submitted .application .collect-each-row {
 }
 
 main section.submitted .application .collect-each-row .app-row {
+  cursor: pointer;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -895,6 +906,10 @@ main section.submitted .application .collect-each-row .app-content .block .block
 
 main section.submitted .application .collect-each-row .app-content .block .block-collect-info .textarea-result-devtalk,
 main section.submitted .application .collect-each-row .app-content .block .block-collect-info .textarea-result-smth {
+  -webkit-transform-origin: top;
+          transform-origin: top;
+  -webkit-animation: animate 0.5s;
+          animation: animate 0.5s;
   min-height: 120px;
   max-width: 430px;
   padding: 24px 20px 0 24px;
